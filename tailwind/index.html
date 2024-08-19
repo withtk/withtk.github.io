@@ -1,78 +1,289 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <!--    <script src="https://cdn.tailwindcss.com"></script>-->
     <!--    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>-->
-    <script src="tailwind.3.4.5.js"></script>
-    <script src="cutom-tailwind.js"></script>
-<!--    <link type="text/tailwindcss" href="./custom-tailwind.css" rel="stylesheet"  />-->
+    <script src="cdn/tailwind.3.4.5.js"></script>
+    <script src="cdn/cutom-tailwind.js"></script>
+    <!--    <link type="text/tailwindcss" href="./custom-tailwind.css" rel="stylesheet"  />-->
     <title>tailwind</title>
-</head>
-<body>
-<div class="p-6 m-6 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-medium text-tomato">Tailwind Play</h2>
-    <p class="text-gray-600">
-        Play CDN을 사용하면 좀 더 쉽고 빠르게 Tailwind를 체험해볼 수 있습니다.
-    </p>
-    <button class="mt-4 bg-pink-100 btn">클릭</button>
-</div>
-<div class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
-    <div class="flex justify-between flex-1 sm:hidden">
-        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">Previous</a>
-        <a href="#" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">Next</a>
-    </div>
-    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div>
-            <p class="text-sm text-gray-700">
-                Showing
-                <span class="font-medium">1</span>
-                to
-                <span class="font-medium">10</span>
-                of
-                <span class="font-medium">97</span>
-                results
-            </p>
+  </head>
+  <body>
+    <!-- component -->
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full">
+              <thead class="bg-white border-b">
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-6 py-4 text-sm font-medium text-left text-gray-900"
+                  >
+                    #
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-4 text-sm font-medium text-left text-gray-900"
+                  >
+                    First
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-4 text-sm font-medium text-left text-gray-900"
+                  >
+                    Last
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-4 text-sm font-medium text-left text-gray-900"
+                  >
+                    Handle
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-gray-100 border-b">
+                  <td
+                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    1
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Mark
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Otto
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    @mdo
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <td
+                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    2
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Jacob
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Dillan
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    @fat
+                  </td>
+                </tr>
+                <tr class="bg-gray-100 border-b">
+                  <td
+                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    3
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Mark
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Twen
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    @twitter
+                  </td>
+                </tr>
+                <tr class="bg-white border-b">
+                  <td
+                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    4
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Bob
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    Dillan
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    @fat
+                  </td>
+                </tr>
+                <tr class="bg-gray-100 border-b">
+                  <td
+                    class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    5
+                  </td>
+                  <td
+                    colspan="2"
+                    class="px-6 py-4 text-sm font-light text-center text-gray-900 whitespace-nowrap"
+                  >
+                    Larry the Bird
+                  </td>
+                  <td
+                    class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap"
+                  >
+                    @twitter
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div>
-            <nav class="inline-flex -space-x-px rounded-md shadow-sm isolate" aria-label="Pagination">
-                <a href="#" class="relative inline-flex items-center px-2 py-2 text-gray-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                    <span class="sr-only">Previous</span>
-                    <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                <a href="#" aria-current="page" class="relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
-                <!-- <a href="#" aria-current="page" class="aaaa">12</a> -->
-                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                <a href="#" class="relative items-center hidden px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-                <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-                <a href="#" class="relative items-center hidden px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
-                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
-                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
-                <a href="#" class="relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                    <span class="sr-only">Next</span>
-                    <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </nav>
-        </div>
+      </div>
     </div>
-</div>
-<div class="p-6 m-6 bg-white rounded-lg shadow-md">
-    <h2 class="text-xl font-medium text-tomato">Tailwind Play</h2>
-    <p class="text-gray-600">Play CDN을 사용하면 좀 더 쉽고 빠르게 Tailwind를 체험해볼 수 있습니다.</p>
-    <button class="mt-4 abcd">클릭</button>
-  </div>
 
-  <style type="text/tailwindcss" >
-    @layer components {
-      .abcd {
-        @apply rounded bg-pink-500 px-4 py-2 font-bold text-white hover:bg-blue-600;
+    <div
+      class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
+    >
+      <div class="flex justify-between flex-1 sm:hidden">
+        <a
+          href="#"
+          class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          >Previous</a
+        >
+        <a
+          href="#"
+          class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          >Next</a
+        >
+      </div>
+      <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <div>
+          <!--            <p class="text-sm text-gray-700">-->
+          <!--                Showing-->
+          <!--                <span class="font-medium">1</span>-->
+          <!--                to-->
+          <!--                <span class="font-medium">10</span>-->
+          <!--                of-->
+          <!--                <span class="font-medium">97</span>-->
+          <!--                results-->
+          <!--            </p>-->
+        </div>
+        <div class="w-full text-center">
+          <nav
+            class="inline-flex -space-x-px rounded-md shadow-sm isolate"
+            aria-label="Pagination"
+          >
+            <a
+              href="#"
+              onclick="onPrev();"
+              class="relative inline-flex items-center px-2 py-2 text-gray-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              <span class="sr-only">Previous</span>
+              <svg
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
+            <a
+              href="#"
+              aria-current="page"
+              class="relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >1</a
+            >
+            <!-- <a href="#" aria-current="page" class="aaaa">12</a> -->
+            <a
+              href="#"
+              class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+              >2</a
+            >
+            <a
+              href="#"
+              class="relative items-center hidden px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+              >3</a
+            >
+            <span
+              class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0"
+              >...</span
+            >
+            <a
+              href="#"
+              class="relative items-center hidden px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
+              >8</a
+            >
+            <a
+              href="#"
+              class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+              >9</a
+            >
+            <a
+              href="#"
+              class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+              >10</a
+            >
+            <a
+              href="#"
+              onclick="onNext();"
+              class="relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            >
+              <span class="sr-only">Next</span>
+              <svg
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="p-6 m-6 bg-white rounded-lg shadow-md">
+  <button class="mt-4 abcd">클릭</button>
+</div> -->
+    <p id="pppp" class="w-full text-lg text-center">click btn</p>
+    <style type="text/tailwindcss">
+      @layer components {
+        .abcd {
+          @apply rounded bg-pink-500 px-4 py-2 font-bold text-white hover:bg-blue-600;
+        }
       }
-    }
-  </style>
-</body>
+    </style>
+    <script>
+      const dummy = Array.from({ length: 10 }).map((e, i) => {
+        return { name: "name" + i, contents: "contents" + i };
+      });
+    </script>
+  </body>
 </html>
