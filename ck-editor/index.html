@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CKEditor 5 - Quick start ZIP</title>
     <link rel="stylesheet" href="../tailwind/cdn/custom-tailwind.css" />
     <link rel="stylesheet" href="./ckeditor5/ckeditor5.css" />
     <script src="../tailwind/cdn/tailwind.3.4.5.js"></script>
-  </head>
-  <body>
-    <script>
-      function getttt() {
-        const result = window.editor.getData();
-        console.log("--func--result: ", result);
+</head>
+<body>
+<script>
+  function getttt() {
+    const result = window.editor.getData();
+    console.log("--func--result: ", result);
 
-        document.getElementById("sketch").innerText = result;
-        document.getElementById("reCreate").innerHTML = result;
-      }
-    </script>
-    <div class="main-container">
-      <div id="editor">
+    document.getElementById("sketch").innerText = result;
+    document.getElementById("reCreate").innerHTML = result;
+  }
+</script>
+<div class="w-[795px] mx-auto">
+    <div id="editor">
         <p>Hello from CKEditor 5!</p>
-      </div>
-      <button onclick="getttt()" class="text-white bg-indigo-600">Click me</button>
-      <div id="sketch" class="inline-block h-[100px] bg-blue-100 overflow-auto"></div>
-      <div id="reCreate" class="inline-block"></div>
     </div>
+    <button onclick="getttt()" class="text-white bg-indigo-600">Click me</button>
+    <div id="sketch" class="inline-block h-[100px] bg-blue-100 overflow-auto"></div>
+    <div id="reCreate" class="inline-block"></div>
+</div>
 <!--    <script type="importmap">-->
 <!--      {-->
 <!--        "imports": {-->
@@ -34,32 +34,15 @@
 <!--        }-->
 <!--      }-->
 <!--    </script>-->
-    <script type="module">
-      import { ClassicEditor, Essentials, Paragraph, Bold, Italic, Font } from "./ckeditor5/ckeditor5.js";
+<script type="module" src="./ck-main.js"></script>
 
-      ClassicEditor.create(document.querySelector("#editor"), {
-        plugins: [Essentials, Paragraph, Bold, Italic, Font],
-        toolbar: ["undo", "redo", "|", "bold", "italic", "|", "fontSize", "fontFamily", "fontColor", "fontBackgroundColor"],
-        defaultLanguage:'ko',
-      })
-        .then((editor) => {
-          window.editor = editor;
-          // editor.setData( '<p>Modified from the console! initilized data</p>' );
-          const initData = '<p>테스트입니다.&nbsp;</p><p><strong>한글</strong> <i>모음</i> <span style="color:hsl(0, 75%, 60%);">오류</span>에 대한 <span style="background-color:hsl(90, 75%, 60%);color:hsl(0, 0%, 100%);">테스트</span></p><p>입니다.</p><p>&nbsp;</p><p>&nbsp;</p>';
-          editor.setData(initData);
-        })
-        .catch((error) => {
-          console.error("ckEditor", error);
-        });
-
-    </script>
-    <!-- A friendly reminder to run on a server, remove this during the integration. -->
-    <script>
-      window.onload = function () {
-        if (window.location.protocol === "file:") {
-          alert("This sample requires an HTTP server. Please serve this file with a web server.");
-        }
-      };
-    </script>
-  </body>
+<!-- A friendly reminder to run on a server, remove this during the integration. -->
+<script>
+  window.onload = function () {
+    if (window.location.protocol === "file:") {
+      alert("This sample requires an HTTP server. Please serve this file with a web server.");
+    }
+  };
+</script>
+</body>
 </html>
