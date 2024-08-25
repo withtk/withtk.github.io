@@ -1,0 +1,57 @@
+@keyframes changeLetter {
+    0% {
+        content: "▼";
+    }
+    49% {
+        content: "▼";
+        opacity: 0;
+    }
+    50% {
+        content: "▲";
+        opacity: 0.1;
+    }
+    100% {
+        content: "▲";
+        opacity: 1;
+    }
+}
+
+.option {
+    padding: 0.7rem;
+    border-radius: 4px;
+    background-color: #efa2a2;
+    font-family: "Roboto", sans-serif;
+}
+
+.option span::after {
+    content: "▼";
+    float: right;
+}
+
+.optionList {
+    width: 20rem;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s linear, visibility 1s linear;
+}
+
+.optionListItem {
+    height: 2rem;
+    padding: 1rem 0 0 1rem;
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+    transition: all 0.8s;
+    cursor: pointer;
+}
+
+.optionListItem:hover {
+    background-color: rgba(223, 247, 179, 0.514);
+}
+
+.pppp{
+    background-color: #00a9ff;
+}
