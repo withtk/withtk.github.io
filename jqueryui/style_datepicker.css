@@ -50,17 +50,17 @@
 
 .ui-datepicker .ui-datepicker-title .ui-datepicker-year {
     /* 년도 숫자만 */
-    color: gold;
+    color: #776c36;
 }
 
 .ui-datepicker .ui-datepicker-title .ui-datepicker-month {
     /* *월 */
-    color: gold;
+    color: #40c95b;
 }
 
 .ui-datepicker th {
     /* 요일 영역 */
-    background: grey;
+    background: #e1d294;
 }
 
 .ui-datepicker th span {
@@ -77,9 +77,12 @@
     width: 24px;
     height: 24px;
     line-height: 24px;
-    border-radius: 100%;
+    border-radius: 10%;
     padding: 0;
     margin: 0 auto;
+}
+.ui-state-default.ui-state-hover{
+    background: #aec6ef;
 }
 
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
