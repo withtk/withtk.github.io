@@ -10,31 +10,76 @@
     <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/167x167.png" sizes="167x167">
     <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/180x180.png" sizes="180x180">
     <link rel="stylesheet" href="./style.css">
-    <!--		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css">-->
     <link rel="stylesheet" href="./cdn/ckeditor5.css">
+    <!--		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css">-->
+
+    <script src="../tailwind/cdn/tailwind.3.4.5.js"></script>
+    <style>
+        .ck-editor__editable_inline {
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 <div>
-    <div class="main-container">
-        <div class="editor-container editor-container_classic-editor" id="editor-container">
+    <div class="main-container" style="max-height: 500px">
+
+        <p>Hello from CKEditor 5!</p>
+        <div class="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-block-toolbar"
+             id="editor-container">
             <div class="editor-container__editor">
                 <div id="editor"></div>
             </div>
+
+        </div>
+
+
+        <div class="text-center">
+            <button id="submit" onclick="getttt()" class="text-white w-[200px] p-2 bg-indigo-600">제출하기</button>
+        </div>
+        <div class="w-full p-[10%] h-[200px]">
+            <span class="bg-red-50 overflow-auto">Html</span>
+            <div id="sketch" class="w-full h-[200px] bg-red-50 overflow-auto"></div>
+            <br />
+            <span class="bg-blue-50 overflow-auto">웹페이지</span>
+            <div id="reShow" class="w-full h-[200px] bg-blue-50 overflow-auto"></div>
         </div>
     </div>
+
 </div>
+</div>
+
+
+<script type="importmap">
+    {
+        "imports": {
+            "ckeditor5": "./cdn/ckeditor5.js",
+            "ckeditor5/": "./cdn/"
+        }
+    }
+</script>
 <!--		<script type="importmap">-->
-<!--		{-->
-<!--			"imports": {-->
-<!--				"ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",-->
-<!--				"ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"-->
-<!--			}-->
-<!--		}-->
+<!--			{-->
+<!--                "imports": {-->
+<!--                    "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.js",-->
+<!--                    "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.0.0/"-->
+<!--                }-->
+<!--            }-->
 <!--		</script>-->
-<script type="importmap" src="./cdn/ckeditor5.js"></script>
-<script src="./cdn/ckbox.js"></script>
-<!--		<script src="https://cdn.ckbox.io/ckbox/latest/ckbox.js"></script>-->
+<!--		<script type="importmap" src="./cdn/ckeditor5.js"></script>-->
+
 <script type="module" src="./main.js"></script>
+
+<!--<script>-->
+<!--  function getttt() {-->
+<!--    // const editor = document.querySelector('editor');-->
+<!--    const result = editor.getData();-->
+<!--    console.log("&#45;&#45;func&#45;&#45;result: ", result);-->
+
+<!--    document.getElementById("sketch").innerText = result;-->
+<!--    document.getElementById("reCreate").innerHTML = result;-->
+<!--  }-->
+<!--</script>-->
 <!-- A friendly reminder to run on a server, remove this during the integration. -->
 <script>
   window.onload = function () {
