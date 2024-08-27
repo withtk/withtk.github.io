@@ -23,6 +23,8 @@ import {
   IndentBlock,
   Italic,
   Link,
+  List,
+  ListProperties,
   Paragraph,
   RemoveFormat,
   SelectAll,
@@ -84,6 +86,8 @@ const editorConfig = {
       '|',
       'alignment',
       '|',
+      'bulletedList',
+      'numberedList',
       'outdent',
       'indent',
       '|',
@@ -115,6 +119,8 @@ const editorConfig = {
     IndentBlock,
     Italic,
     Link,
+    List,
+    ListProperties,
     Paragraph,
     RemoveFormat,
     SelectAll,
@@ -231,6 +237,13 @@ const editorConfig = {
           download: 'file'
         }
       }
+    }
+  },
+  list: {
+    properties: {
+      styles: true,
+      startIndex: true,
+      reversed: true
     }
   },
   placeholder: '글을 적어주세요.',
