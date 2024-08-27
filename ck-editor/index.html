@@ -15,16 +15,21 @@
     console.log("--func--result: ", result);
 
     document.getElementById("sketch").innerText = result;
-    document.getElementById("reCreate").innerHTML = result;
+    document.getElementById("reShow").innerHTML = result;
   }
 </script>
 <div class="w-[795px] mx-auto">
     <div id="editor">
         <p>Hello from CKEditor 5!</p>
     </div>
-    <button onclick="getttt()" class="text-white bg-indigo-600">Click me</button>
-    <div id="sketch" class="inline-block h-[100px] bg-blue-100 overflow-auto"></div>
-    <div id="reCreate" class="inline-block"></div>
+    <div class="text-center">
+        <button onclick="getttt()" class="text-white w-[200px] p-2 bg-indigo-600">제출하기</button>
+    </div>
+    <span class="bg-red-50 overflow-auto">Html</span>
+    <div id="sketch" class=" w-full h-[200px] bg-red-50 overflow-auto"></div>
+    <br/>
+    <span class="bg-blue-50 overflow-auto">Text</span>
+    <div id="reShow" class=" w-full h-[200px] bg-blue-50 overflow-auto"></div>
 </div>
 <!--    <script type="importmap">-->
 <!--      {-->
