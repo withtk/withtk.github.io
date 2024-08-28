@@ -58,7 +58,7 @@ const editorConfig = {
       'selectAll',
       '|',
       'heading',
-      'style',
+      // 'style',
       '|',
       'fontSize',
       'fontFamily',
