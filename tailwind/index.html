@@ -6,6 +6,24 @@
     <!--    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>-->
     <script src="cdn/tailwind.3.4.5.js"></script>
     <script src="cdn/cutom-tailwind.js"></script>
+    <style>
+      .btnNumber{
+        display: inline-flex;
+        z-index: 10;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        align-items: center;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #4F46E5;
+
+
+      }
+    </style>
     <!--    <link type="text/tailwindcss" href="./custom-tailwind.css" rel="stylesheet"  />-->
     <title>tailwind</title>
   </head>
@@ -88,6 +106,7 @@
             </a>
             <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
             <a href="#" aria-current="page" class="relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
+            <a href="#" aria-current="page" class="aaaa">1</a>
             <!-- <a href="#" aria-current="page" class="aaaa">12</a> -->
             <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
             <a href="#" class="relative items-center hidden px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
@@ -111,7 +130,7 @@
     <p id="pppp" class="w-full text-lg text-center">click btn</p>
     <style type="text/tailwindcss">
       @layer components {
-        .abcd {
+        .btnNumber {
           @apply rounded bg-pink-500 px-4 py-2 font-bold text-white hover:bg-blue-600;
         }
       }
