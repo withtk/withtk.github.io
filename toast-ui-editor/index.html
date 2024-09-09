@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- 보기 편하게 CSS추가해주었습니다. -->
     <style>
         * {
-            text-align: center;
+            /*text-align: center;*/
         }
 
         #editor {
@@ -21,8 +21,9 @@
 
         /* !!여기!! 새로운 div태그 스타일 추가해줫습니다. */
         #contents {
+            overflow: auto;
             width: 50%;
-            height: 100px;
+            height: 500px;
             margin: 30px auto;
             border: 1px solid;
         }
@@ -30,18 +31,19 @@
 
     <!-- TOAST UI Editor CDN URL(CSS)-->
     <!-- <link rel="stylesheet" href="./toastui/codemirror.min.css"/> -->
-    <link rel="stylesheet" href="./toastui/toastui-editor.min.css" />
+    <link rel="stylesheet" href="./toastui/toastui-editor.min.css"/>
 </head>
 <body>
-<h1>TOAST UI Editor1</h1>
+<h1 style="width: 100%; text-align: center">TOAST UI Editor1</h1>
 
 <!-- TOAST UI Editor가 들어갈 div태그 -->
 <div id="editor"></div>
-<!-- !!여기!! 에디터 내용을 받을 div태그-->
-<div id="contents"></div>
-<!-- TOAST UI Editor CDN URL(JS) -->
-
-<button onclick="onHtml()" style="font-size: 30px">test</button>
+<div style="text-align: center">
+    <button onclick="onHtml()" style="font-size: 30px; margin: 10px">result</button>
+    <!-- !!여기!! 에디터 내용을 받을 div태그-->
+    <div id="contents"></div>
+    <!-- TOAST UI Editor CDN URL(JS) -->
+</div>
 
 
 <script src="./toastui/toastui-editor-all.min.js"></script>
@@ -49,42 +51,44 @@
 
 <!-- TOAST UI Editor 생성 JavaScript 코드 -->
 <script>
-  //   const editor = new Editor({
-  //     el: document.querySelector("#editor"),
-  //     previewStyle: "vertical",
-  //     height: "500px",
-  //     initialValue: "안녕하세요. test.",
-  //     toolbarItems: [
-  //       ["heading", "bold"],
-  //       ["ul", "ol", "task"],
-  //       ["code", "codeblock"],
-  //     ],
-  //   });
+    //   const editor = new Editor({
+    //     el: document.querySelector("#editor"),
+    //     previewStyle: "vertical",
+    //     height: "500px",
+    //     initialValue: "안녕하세요. test.",
+    //     toolbarItems: [
+    //       ["heading", "bold"],
+    //       ["ul", "ol", "task"],
+    //       ["code", "codeblock"],
+    //     ],
+    //   });
 
-  const editor = new toastui.Editor({
-    el: document.querySelector("#editor"),
-    previewStyle: "tab",
-    height: "500px",
-    //   initialValue: '안녕하세요. tttt.',
-    initialEditType: "wysiwyg",
-    language: "ko-KR",
-    toolbarItems: [
-      ["heading", "bold"],
-      ["ul", "ol", "task"],
-      ["code", "codeblock"],
-    ],
-  });
 
-  // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
-  document
-    .querySelector("#contents")
-    .insertAdjacentHTML("afterbegin", editor.getHTML());
-  console.log(editor.getHTML());
+    const editor = new toastui.Editor({
+        el: document.querySelector("#editor"),
+        previewStyle: "tab",
+        height: "500px",
+        //   initialValue: '안녕하세요. tttt.',
+        initialEditType: "wysiwyg",
+        language: "ko-KR",
+        previewStyle: 'vertical'
+        // toolbarItems: [
+        //   ["heading", "bold"],
+        //   ["ul", "ol", "task"],
+        //   ["code", "codeblock"],
+        // ],
+    });
 
-  function onHtml() {
-    document.getElementById('contents').innerHTML = editor.getHTML();
+    // !!여기!! editor.getHtml()을 사용해서 에디터 내용 받아오기
+    document
+        .querySelector("#contents")
+        .insertAdjacentHTML("afterbegin", editor.getHTML());
     console.log(editor.getHTML());
-  }
+
+    function onHtml() {
+        document.getElementById('contents').innerHTML = editor.getHTML();
+        console.log(editor.getHTML());
+    }
 </script>
 
 
