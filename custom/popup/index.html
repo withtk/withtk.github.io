@@ -11,32 +11,56 @@
 <body>
 
 <p>popup</p>
-<div class="outer">
-    <div id="inner" class="outer">
-        <p>inner</p>
-        <p>inner</p>
-        <p>inner</p>
-        <p>inner</p>
-        <p>inner</p>
-        <p>inner</p>
+<div id="outer" class="outer">
+    <div id="inner" class="inner">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <button onclick="onInner()">inner</button>
+        <br />
+        <button onclick="onInner()">inner</button>
+        <br />
+        <button onclick="onInner()">inner</button>
+        <br />
+        <button onclick="onInner()">inner</button>
+        <br />
     </div>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
-    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
+    <button onclick="onOuter()">--outer-----</button>
+    <br />
 
 
 </div>
 
 <script>
-  function onBBB() {
-    console.log('--func--test: outer');
+  function onOuter() {
     const el = document.getElementById('inner');
-    if(el.style.display === 'none') el.style.display = 'block';
-    else  el.style.display = 'none';
+    console.log('--func--test: onOuter', el.style.display);
+    toggle();
+  }
+
+  function onInner() {
+    const el = document.getElementById('inner');
+    console.log('--func--test: onInner', el.style.display);
+    toggle();
+  }
+
+  function toggle() {
+    const el = document.getElementById('inner');
+    if (el.style.display === 'none') el.style.display = 'block';
+    else el.style.display = 'none';
   }
 
   // (function () {
