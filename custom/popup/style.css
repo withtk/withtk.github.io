@@ -1,0 +1,13 @@
+.outer {
+    position: relative;
+    background-color: #f3f3;
+}
+
+
+.inner {
+    background-color: #0d70a5;
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    display: none;
+}

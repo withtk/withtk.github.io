@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <title>popup</title>
+    <link href="./style.css" rel="stylesheet" />
+</head>
+<body>
+
+<p>popup</p>
+<div class="outer">
+    <div id="inner" class="outer">
+        <p>inner</p>
+        <p>inner</p>
+        <p>inner</p>
+        <p>inner</p>
+        <p>inner</p>
+        <p>inner</p>
+    </div>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+    <button onclick="onBBB()">--outer-----</button><br/>
+
+
+</div>
+
+<script>
+  function onBBB() {
+    console.log('--func--test: outer');
+    const el = document.getElementById('inner');
+    if(el.style.display === 'none') el.style.display = 'block';
+    else  el.style.display = 'none';
+  }
+
+  // (function () {
+  //   console.log('--func--test: ');
+  //
+  // })();
+</script>
+
+</body>
+</html>
