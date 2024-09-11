@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Custom Event Example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<button id="triggerEvent">Trigger Custom Event</button>
+
+<script>
+	$(function() {
+		// 커스텀 이벤트 핸들러를 문서에 바인딩
+		$(document).on('customEvent', function(event, customData) {
+			console.log('Custom Event Triggered! Data: ' + customData);
+		});
+
+		// 커스텀 이벤트를 트리거하는 버튼 클릭 이벤트 핸들러
+		$('#triggerEvent').on('click', function() {
+			// 커스텀 이벤트 트리거
+			$(document).trigger('customEvent', ['1111111111111!']);
+		});
+
+	});
+</script>
+</body>
+</html>
