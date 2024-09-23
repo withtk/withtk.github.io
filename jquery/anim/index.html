@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlideUp & SlideDown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .wrap {
+            width: 800px;
+            height: 800px;
+            background-color: #00a9ff33;
+            position: relative;
+        }
+        #content {
+            position: absolute;
+            bottom:0;
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+            display: none; /* 초기에는 숨겨진 상태 */
+        }
+
+        button {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<button id="slideDownBtn">열기</button>
+<button id="slideUpBtn">닫기</button>
+
+
+<div class="wrap">
+
+    <div id="content">
+        <p>슬라이드 컨텐츠입니다!</p>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // slideDown 버튼 클릭 시
+        $('#slideDownBtn').click(function () {
+            $('#content').slideDown();
+        });
+
+        // slideUp 버튼 클릭 시
+        $('#slideUpBtn').click(function () {
+            $('#content').slideUp();
+        });
+    });
+</script>
+</body>
+</html>
