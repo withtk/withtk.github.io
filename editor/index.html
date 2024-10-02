@@ -5,45 +5,74 @@
     <title>CKEditor 5 Sample</title>
     <link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/96x96.png" sizes="96x96">
-    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/120x120.png" sizes="120x120">
-    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/152x152.png" sizes="152x152">
-    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/167x167.png" sizes="167x167">
-    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/180x180.png" sizes="180x180">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/120x120.png"
+          sizes="120x120">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/152x152.png"
+          sizes="152x152">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/167x167.png"
+          sizes="167x167">
+    <link rel="apple-touch-icon" type="image/png" href="https://ckeditor.com/assets/images/favicons/180x180.png"
+          sizes="180x180">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./cdn/ckeditor5.css">
     <!--		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.0.0/ckeditor5.css">-->
 
-<!--    <script src="../tailwind/cdn/tailwind.3.4.5.js"></script>-->
+    <!--    <script src="../tailwind/cdn/tailwind.3.4.5.js"></script>-->
     <style>
+        .main-container {
+            width: 100%;
+            background-color: #0d70a533;
+        }
+
+        .ck-editor__editable {
+            width: 100%;
+        }
+
         .ck-editor__editable_inline {
             height: 400px;
+        }
+
+        .ck.ck-editor {
+            width: 100%;
+        }
+
+        .editor-container_classic-editor .editor-container__editor {
+            display: block;
+            /*min-width: 1200px;*/
+            /*max-width: 1795px;*/
+        }
+
+        .ck.ck-reset.ck-editor.ck-rounded-corners {
+            min-width: 1300px;
+            max-width: 1300px;
+        }
+
+        .editor-container {
+            margin: 0;
         }
     </style>
 </head>
 <body>
-<div>
+<div style="width:100%; background-color: #f3f3; text-align: center">
     <div class="main-container" style="max-height: 500px  ">
 
-
-        <div>
-
-            <p class="text-[30px]">Editor Test</p>
-            <div class="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-block-toolbar"
-                 id="editor-container">
-                <div class="editor-container__editor">
-                    <div id="editor"></div>
-                </div>
+        <p class="text-[30px]">Editor Test</p>
+        <div class="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-block-toolbar"
+             id="editor-container">
+            <div class="editor-container__editor">
+                <div id="editor"></div>
             </div>
-
-
-            <button id="submit" class="m-4 text-white w-[200px] p-2 bg-indigo-600">제출하기</button>
         </div>
+
+        <button id="submit" class="m-4 text-white w-[200px] p-2 bg-indigo-600">제출하기</button>
+
         <div class="w-full max-w-[1000px] h-[200px]">
             <div>
                 <span class="bg-red-50 overflow-auto">Html------------------</span>
-                <div id="sketch" class="w-full h-[200px] p-4 border-2 border-solid border-slate-300 overflow-auto"></div>
+                <div id="sketch"
+                     class="w-full h-[200px] p-4 border-2 border-solid border-slate-300 overflow-auto"></div>
             </div>
-            <br />
+            <br/>
             <span class="bg-blue-50 overflow-auto">웹페이지------------------</span>
             <div id="reShow" class="w-full p-4 border-2 border-solid border-red-300 overflow-auto"></div>
         </div>
@@ -83,11 +112,11 @@
 <!--</script>-->
 <!-- A friendly reminder to run on a server, remove this during the integration. -->
 <script>
-  window.onload = function () {
-    if (window.location.protocol === "file:") {
-      alert("This sample requires an HTTP server. Please serve this file with a web server.");
-    }
-  };
+    window.onload = function () {
+        if (window.location.protocol === "file:") {
+            alert("This sample requires an HTTP server. Please serve this file with a web server.");
+        }
+    };
 </script>
 </body>
 </html>
