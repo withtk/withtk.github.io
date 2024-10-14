@@ -55,3 +55,55 @@
 .pppp{
     background-color: #00a9ff;
 }
+
+
+/*****switch*********************************/
+.wrapper { position: relative; }
+#switch {
+    position: absolute;
+    /* hidden */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.switch_label {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 58px;
+    height: 28px;
+    background: #777;
+    border: 1px solid #777;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+/*.switch_label:hover {*/
+/*    background: #efefef;*/
+/*}*/
+.onf_btn {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border-radius: 20px;
+    background: #fff;
+    transition: 0.2s;
+}
+/* checking style */
+#switch:checked+.switch_label {
+    background: #2f5dbe;
+    border: 1px solid #2f5dbe;
+}
+
+/*#switch:checked+.switch_label:hover {*/
+/*    background: #e55;*/
+/*}*/
+
+/* move */
+#switch:checked+.switch_label .onf_btn {
+    left: 33px;
+    background: #fff;
+    box-shadow: 1px 2px 3px #00000020;
+}
