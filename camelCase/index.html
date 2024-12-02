@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+        <title>json to csv</title>
+        <!--    <script type="text/javascript" src="script.js"></script>-->
+        <!--    <link href="./style.css" rel="stylesheet" />-->
+
+        <script>
+            function convert1() {
+                const date = new Date()
+                const year = date.getFullYear()
+                const month = String(date.getMonth() + 1).padStart(2, '0') // 월은 0부터 시작하므로 1을 더합니다.
+                const day = String(date.getDate()).padStart(2, '0')
+                const hours = String(date.getHours()).padStart(2, '0')
+                const minutes = String(date.getMinutes()).padStart(2, '0')
+                const seconds = String(date.getSeconds()).padStart(2, '0')
+
+                // 원하는 형식으로 포맷
+                const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+                console.log(formattedDate) // e.g., "2024-09-03 15:24:30"
+
+                function camelCaseToUpperCase(str) {
+                    return str.replace(/([a-z])([A-Z])/g, '$1_$2').toUpperCase()
+                }
+
+                const aa = document.getElementById('text1').value
+                console.log('--func--aa: ', aa)
+
+                const result = camelCaseToUpperCase(aa)
+                console.log('--func--result: ', result)
+
+                document.getElementById('result').innerText = result
+            }
+        </script>
+    </head>
+    <body>
+        <h1>----camelCase 2 UpperCase----</h1>
+        <div style="padding: 2rem">
+            <textarea id="text1" name="text1" rows="5" cols="33" placeholder="변환할 캐멀케이스 삽입"></textarea>
+
+            <button onclick="convert1()">변환하기</button>
+            <p id="result"></p>
+        </div>
+    </body>
+</html>
