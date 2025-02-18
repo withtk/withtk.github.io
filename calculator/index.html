@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+  <title>test</title>
+  <!--    <link href="./style.css" rel="stylesheet" />-->
+</head>
+<body>
+
+<h1>----permission calculator----</h1>
+<div>
+    <pre> const permissions = [
+  "읽기", // 4
+  "쓰기", // 2
+  "실행", // 1
+  "수정", // 8
+  "삭제", // 16
+  "목록", // 32
+  "검색", // 64
+  "생성", // 128
+  "변경", // 256
+  "관리", // 512
+];</pre>
+
+  <input type="text" id="perNumber" placeholder="숫자 입력" value="343" />
+  <button id="btn1" onclick="hit()">권한확인</button>
+  <p id="result">result</p>
+</div>
+
+<script type="text/javascript" src="script.js">
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('----loadload----')
+    document.querySelector('#perNumber').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        hit();
+      }
+    });
+  });
+
+</script>
+</body>
+</html>
