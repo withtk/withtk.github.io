@@ -5,10 +5,18 @@
 </template>
 
 <script setup lang="ts">
-import list  from '../node/page_list.json'
+import { type Ref, ref } from 'vue';
+import page_list  from '../node/page_list.json'
+
+const exceptionList = ['ls','lscode','blogcode']
+const list : Ref = ref<Array<string>>([])
+
+list.value =  page_list.filter(element => !exceptionList.includes(element));
+
+console.log('--func--list.value: ', list.value);
 
 const goto = (index: number) => {
-  const url = 'https://withtk.github.io/' + list[index];
+  const url = 'https://withtk.github.io/' + list.value[index];
   window.open(url, '_blank');
 };
 
