@@ -7,6 +7,7 @@
   <meta name="viewport"
         content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
   <title>test</title>
+
   <!--    <link href="./style.css" rel="stylesheet" />-->
 </head>
 <body>
@@ -31,16 +32,17 @@
   <p id="result">result</p>
 </div>
 
-<script type="text/javascript" src="script.js">
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript"   >
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('----loadload----')
+    console.log('----loadload----');
     document.querySelector('#perNumber').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         hit();
       }
     });
   });
-
 </script>
+
 </body>
 </html>
