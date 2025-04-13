@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta name="viewport"
+        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+  <title>test</title>
+
+  <!--    <link href="./style.css" rel="stylesheet" />-->
+  <style>
+      textarea {
+          width: 80vmax;
+          height: 50vmax;
+          padding: 3px;
+          border: 1px solid #999999;
+      }
+  </style>
+</head>
+<body>
+
+<h1>--Tree--</h1>
+<div>
+
+  <button id="btn1" onclick="createTree3()">트리 만들기</button>
+  <button id="btn2" onclick="reset()" hidden>초기화</button>
+  <pre><p id="result">result</p></pre>
+
+
+  <pre><p>
+-----code---------------------------------------------------
+
+const dum1 = [
+  { id: 1, parentId: 6, name:'1111' },
+  { id: 2, parentId: 5 , name:'2222'},
+  { id: 3, parentId: 2, name:'3333' },
+  { id: 4, parentId: 1 , name:'4444'},
+  { id: 5, parentId: null, name:'5555' },
+  { id: 6, parentId: 2 , name:'6666'},
+];
+
+function createTree3() {
+  const data = dum1;
+  const map = data.reduce((acc, node) => {
+    acc[node.id] = { ...node, children: [] };
+    return acc;
+  }, {});
+
+  // const tree = [];
+  let result = {}
+  data.forEach((node) => {
+    if (node.parentId && map[node.parentId]) {
+      map[node.parentId].children.push(map[node.id]);
+    } else {
+      // tree.push(map[node.id]);
+      result = map[node.id]
+    }
+  });
+
+  console.log('--func--result: ', result);
+  document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+  document.getElementById('btn1').hidden = true;
+  document.getElementById('btn2').hidden = false;
+}
+
+function reset(){
+  document.getElementById('result').innerText = JSON.stringify(dum1, null, 2);
+  document.getElementById('btn1').hidden = false;
+  document.getElementById('btn2').hidden = true;
+}
+
+
+document.getElementById('result').innerText = JSON.stringify(dum1, null, 2);
+
+-----------------------------------------------end--------
+  </p></pre>
+
+
+  <textarea name="opinion" cols="30" rows="5">// ModalContext.js
+import React, { createContext, useContext, useState } from 'react';
+
+const ModalContext = createContext();
+
+export const ModalProvider = ({ children }) => {
+    const [modalContent, setModalContent] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = (content) => {
+        setModalContent(content);
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+        setModalContent(null);
+    };
+
+    return (
+        <ModalContext.Provider value={{ openModal, closeModal, modalContent, isOpen }}>
+            {children}
+            {isOpen && <Modal onClose={closeModal}>{modalContent}</Modal>}
+        </ModalContext.Provider>
+    );
+};
+
+export const useModal = () => useContext(ModalContext);
+
+// Modal.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const Modal = ({ children, onClose }) => {
+    return ReactDOM.createPortal(
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button onClick={onClose}>Close</button>
+                {children}
+            </div>
+        </div>,
+        document.getElementById('modal-root') // index.html에 <div id="modal-root"></div> 추가
+    );
+};
+
+export default Modal;
+
+// App.js
+import React from 'react';
+import { ModalProvider, useModal } from './ModalContext';
+
+const App = () => {
+    return (
+        <ModalProvider>
+            <MainComponent />
+        </ModalProvider>
+    );
+};
+
+const MainComponent = () => {
+    const { openModal } = useModal();
+
+    const handleOpenModal = () => {
+        openModal(<div>여기에 동적으로 삽입할 내용</div>);
+    };
+
+    return <button onClick={handleOpenModal}>모달 열기</button>;
+};
+
+export default App;
+</textarea><br>
+
+
+</div>
+
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('----loadload----');
+  });
+</script>
+
+</body>
+</html>
