@@ -14,3 +14,4 @@ npm run build
 2. 같은 이름의 디렉토리 생성 
 3. 그 안에 빌드파일 넣기
 
+실행전 TARGET_DIR_NAME(move_build_Files.js) 변경할 것.

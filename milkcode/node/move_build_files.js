@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-const TARGET_DIR_NAME = 'blog' // 반드시 ../../dir 경로에 있어야 함.
+const TARGET_DIR_NAME = 'milk' // 반드시 ../../dir 경로에 있어야 함.
 console.log(`----------${TARGET_DIR_NAME}---start----------`);
 
 const __filename = fileURLToPath(import.meta.url);

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
 const TARGET_DIR_NAME = 'ls' // 반드시 ../../dir 경로에 있어야 함.
-console.log('----------fs---start----------');
+console.log(`----------${TARGET_DIR_NAME}---start----------`);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -85,4 +85,4 @@ await createDirectoryIfNotExists(destinationDir);
 const sourceDir = path.join(__dirname, '..', 'dist'); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
 await moveDirectory(sourceDir, destinationDir);
 
-console.log('-----------------end-------------');
+console.log(`----------${TARGET_DIR_NAME}---end----------`);
