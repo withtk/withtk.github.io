@@ -1,5 +1,19 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### 1.로컬 실행
+```
+npm run dev
+```
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+### 2.main 병합 전 빌드
+```
+npm run build
+```
+"build": "node ./node/pg_generator.js && vue-tsc -b && vite build && node ./node/move_build_files.js"
+
+### 3.Build flow
+1. 신규로 추가된 디렉토리를 찾아서 동적으로 링크 만들기
+2. 빌드되는 디렉토리 삭제 및 하위 삭제
+3. 같은 이름의 디렉토리 생성
+4. 그 안에 빌드파일 넣기
+
+ls빌드는 새로운 디렉토리가 생겼을때만 실행.

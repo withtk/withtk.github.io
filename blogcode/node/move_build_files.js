@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
+const TARGET_DIR_NAME = 'blog' // 반드시 ../../dir 경로에 있어야 함.
 console.log('----------fs---start----------');
 
 const __filename = fileURLToPath(import.meta.url);
@@ -75,10 +76,10 @@ async function moveDirectory(source, destination) {
 
 ////////////----실행----////////////////////
 
-const tobeDelDir = path.join(__dirname, '..', '..', 'ls'); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
+const tobeDelDir = path.join(__dirname, '..', '..', TARGET_DIR_NAME); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
 await removeDirectory(tobeDelDir);
 
-const destinationDir = path.join(__dirname, '..', '..' , 'ls'); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
+const destinationDir = path.join(__dirname, '..', '..' , TARGET_DIR_NAME); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
 await createDirectoryIfNotExists(destinationDir);
 
 const sourceDir = path.join(__dirname, '..', 'dist'); ///////// 삭제할 폴더명과 경로는 직접 기입!!!!!!
