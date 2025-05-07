@@ -29,3 +29,8 @@ npm run build
 3. 그 안에 빌드파일 넣기
 
 실행전 TARGET_DIR_NAME(move_build_Files.js) 변경할 것.
+
+
+### 4. github.io로 배포 요건
+<vite.config.js>
+    base: '/milk/',

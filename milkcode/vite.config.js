@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename)
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/milk/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -20,5 +21,5 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, './src/styles'),
       '@context': path.resolve(__dirname, './src/context')
     }
-  }
+  },
 })
