@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메모장</title>
+  <!-- 프리텐다드 웹폰트 추가 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="tabs">
+      <div class="add-tab">+</div>
+    </div>
+    <div class="memo-editor" contenteditable="true"></div>
+    <div class="controls">
+      <button id="saveBtn">저장</button>
+      <button id="loadBtn">불러오기</button>
+      <button id="clearBtn">지우기</button>
+      <div class="auto-save-controls">
+        <label>
+          <input type="checkbox" id="autoSaveToggle">
+          자동 저장
+        </label>
+        <input type="number" id="autoSaveInterval" value="10" min="1" max="60">
+        <span id="countdown"></span>
+      </div>
+    </div>
+    <div id="successMessage">자동 저장 완료!</div>
+    <div id="toast"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

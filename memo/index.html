@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메모장</title>
+  <!-- 프리텐다드 웹폰트 추가 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+      body {
+          font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+          margin: 0;
+          padding: 2rem;
+          box-sizing: border-box;
+          height: 100vh;
+      }
+      .memo-container {
+          position: relative;
+          height: calc(100vh - 4rem);
+          display: flex;
+          flex-direction: column;
+      }
+      .memo-editor {
+          border: 1px solid #ccc;
+          flex-grow: 1;
+          padding: 1rem;
+          border-radius: 4px;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          overflow-y: auto;
+          width: calc(100% - 2rem);
+          height: calc(100% - 2rem);
+          margin-top: 60px; /* 버튼 영역 높이만큼 여백 */
+      }
+      .memo-editor:focus {
+          outline: none;
+          border-color: #66afe9;
+          box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
+      }
+      .button-group {
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          margin-bottom: 10px;
+      }
+      button {
+          padding: 8px 16px;
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+      }
+      button:hover {
+          background-color: #45a049;
+      }
+      .load-btn {
+          background-color: #2196F3;
+      }
+      .load-btn:hover {
+          background-color: #0b7dda;
+      }
+      .clear-btn {
+          background-color: #f44336;
+      }
+      .clear-btn:hover {
+          background-color: #d32f2f;
+      }
+      .status {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          color: #666;
+          font-size: 14px;
+      }
+
+      /* 자동저장 토글 스위치 스타일 */
+      .autosave-container {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+      }
+
+      .autosave-label {
+          margin-right: 8px;
+          font-size: 14px;
+          white-space: nowrap;
+      }
+
+      .switch {
+          position: relative;
+          display: inline-block;
+          width: 40px;
+          height: 20px;
+      }
+
+      .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: .4s;
+          border-radius: 20px;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 16px;
+          width: 16px;
+          left: 2px;
+          bottom: 2px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+
+      input:checked + .slider {
+          background-color: #2196F3;
+      }
+
+      input:checked + .slider:before {
+          transform: translateX(20px);
+      }
+
+      .timer-indicator {
+          font-size: 12px;
+          color: #666;
+          margin-left: 8px;
+          min-width: 24px;
+      }
+
+      /* 시간 설정 입력 필드 스타일 */
+      .timer-input {
+          width: 50px;
+          height: 24px;
+          padding: 2px 5px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+          margin-left: 8px;
+          text-align: center;
+          display: inline-block;
+      }
+
+      .timer-input:focus {
+          outline: none;
+          border-color: #66afe9;
+      }
+
+      .timer-input::-webkit-inner-spin-button,
+      .timer-input::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+
+      .timer-input {
+          -moz-appearance: textfield;
+      }
+
+      .timer-container {
+          display: flex;
+          align-items: center;
+          margin-left: 10px;
+      }
+  </style>
+</head>
+<body>
+<h1>메모장</h1>
+<div class="memo-container">
+  <div class="button-group">
+    <div class="autosave-container">
+      <span class="autosave-label">자동저장</span>
+      <label class="switch">
+        <input type="checkbox" id="autosave-toggle">
+        <span class="slider"></span>
+      </label>
+      <div class="timer-container">
+        <input type="number" id="timer-input" class="timer-input" min="1" max="3600" value="10">
+        <span class="autosave-label">초</span>
+        <span id="timer-indicator" class="timer-indicator"></span>
+      </div>
+    </div>
+    <button id="save-btn">저장</button>
+    <button id="load-btn" class="load-btn">불러오기</button>
+    <button id="clear-btn" class="clear-btn">지우기</button>
+  </div>
+  <div id="memo-editor" class="memo-editor" contenteditable="true" placeholder="여기에 메모를 입력하세요..."></div>
+  <div id="status" class="status"></div>
+</div>
+
+<script>
+  // DOM 요소 가져오기
+  const memoEditor = document.getElementById('memo-editor');
+  const saveBtn = document.getElementById('save-btn');
+  const loadBtn = document.getElementById('load-btn');
+  const clearBtn = document.getElementById('clear-btn');
+  const statusDisplay = document.getElementById('status');
+  const autosaveToggle = document.getElementById('autosave-toggle');
+  const timerIndicator = document.getElementById('timer-indicator');
+  const timerInput = document.getElementById('timer-input');
+
+  // 로컬 스토리지 키
+  const MEMO_STORAGE_KEY = 'saved_memo';
+  const AUTOSAVE_ENABLED_KEY = 'autosave_enabled';
+  const AUTOSAVE_INTERVAL_KEY = 'autosave_interval';
+
+  // 메모 영역에 기본 개행 20개 추가
+  const defaultContent = '<br>'.repeat(20);
+
+  // 자동저장 관련 변수
+  let autosaveInterval = null;
+  let countdown = 10; // 기본값
+  let autosaveTime = 10; // 기본값
+
+  // 페이지 로드 시 자동으로 메모 불러오기
+  document.addEventListener('DOMContentLoaded', function() {
+    loadMemo();
+
+    // 저장된 메모가 없으면 기본 개행 추가
+    if (!localStorage.getItem(MEMO_STORAGE_KEY)) {
+      memoEditor.innerHTML = defaultContent;
+    }
+
+    // 자동저장 설정 불러오기
+    const autosaveEnabled = localStorage.getItem(AUTOSAVE_ENABLED_KEY) === 'true';
+    const savedInterval = parseInt(localStorage.getItem(AUTOSAVE_INTERVAL_KEY)) || 10;
+
+    autosaveToggle.checked = autosaveEnabled;
+    timerInput.value = savedInterval;
+    autosaveTime = savedInterval;
+
+    // 토글 상태에 따라 입력 필드 활성/비활성화
+    toggleTimerInputState(!autosaveEnabled);
+
+    // 자동저장이 활성화되어 있으면 시작
+    if (autosaveEnabled) {
+      countdown = savedInterval;
+      startAutosave();
+    }
+  });
+
+  // 저장 버튼 클릭 이벤트
+  saveBtn.addEventListener('click', function() {
+    saveMemo();
+  });
+
+  // 불러오기 버튼 클릭 이벤트
+  loadBtn.addEventListener('click', function() {
+    loadMemo();
+  });
+
+  // 지우기 버튼 클릭 이벤트
+  clearBtn.addEventListener('click', function() {
+    clearMemo();
+  });
+
+  // 자동저장 토글 이벤트
+  autosaveToggle.addEventListener('change', function() {
+    // 입력 필드 활성/비활성화
+    toggleTimerInputState(!this.checked);
+
+    if (this.checked) {
+      // 입력된 시간 값 가져오기
+      const inputTime = parseInt(timerInput.value);
+      autosaveTime = inputTime > 0 ? inputTime : 10; // 0보다 작으면 기본값 10초 사용
+
+      // 로컬 스토리지에 설정 저장
+      localStorage.setItem(AUTOSAVE_INTERVAL_KEY, autosaveTime.toString());
+
+      // 자동 저장 시작
+      countdown = autosaveTime;
+      startAutosave();
+      localStorage.setItem(AUTOSAVE_ENABLED_KEY, 'true');
+      showStatus(`자동저장이 활성화되었습니다. (${autosaveTime}초 간격)`, 'success');
+    } else {
+      stopAutosave();
+      localStorage.setItem(AUTOSAVE_ENABLED_KEY, 'false');
+      showStatus('자동저장이 비활성화되었습니다.', 'info');
+      timerIndicator.textContent = '';
+    }
+  });
+
+  // 타이머 입력 변경 이벤트
+  timerInput.addEventListener('change', function() {
+    let inputTime = parseInt(this.value);
+
+    // 유효성 검사
+    if (isNaN(inputTime) || inputTime < 1) {
+      inputTime = 10; // 기본값
+      this.value = inputTime;
+    } else if (inputTime > 3600) {
+      inputTime = 3600; // 최대 1시간(3600초)
+      this.value = inputTime;
+    }
+
+    autosaveTime = inputTime;
+    localStorage.setItem(AUTOSAVE_INTERVAL_KEY, autosaveTime.toString());
+
+    // 자동저장이 활성화된 상태라면 간격 업데이트
+    if (autosaveToggle.checked) {
+      stopAutosave();
+      countdown = autosaveTime;
+      startAutosave();
+      showStatus(`자동저장 간격이 ${autosaveTime}초로 변경되었습니다.`, 'success');
+    }
+  });
+
+  // 타이머 입력 필드 활성/비활성화 토글 함수
+  function toggleTimerInputState(enabled) {
+    timerInput.disabled = !enabled;
+    if (enabled) {
+      timerInput.classList.remove('disabled');
+    } else {
+      timerInput.classList.add('disabled');
+    }
+  }
+
+  // 자동저장 시작 함수
+  function startAutosave() {
+    if (autosaveInterval) {
+      clearInterval(autosaveInterval);
+    }
+
+    countdown = autosaveTime;
+    updateTimerDisplay();
+
+    autosaveInterval = setInterval(function() {
+      countdown--;
+      updateTimerDisplay();
+
+      if (countdown <= 0) {
+        saveMemo(true); // 자동저장 모드로 저장
+        countdown = autosaveTime;
+      }
+    }, 1000);
+  }
+
+  // 자동저장 중지 함수
+  function stopAutosave() {
+    if (autosaveInterval) {
+      clearInterval(autosaveInterval);
+      autosaveInterval = null;
+    }
+  }
+
+  // 타이머 표시 업데이트
+  function updateTimerDisplay() {
+    timerIndicator.textContent = countdown + 's';
+  }
+
+  // 메모 저장 함수
+  function saveMemo(isAuto = false) {
+    const memoContent = memoEditor.innerHTML;
+
+    try {
+      localStorage.setItem(MEMO_STORAGE_KEY, memoContent);
+      if (!isAuto) {
+        showStatus('메모가 저장되었습니다.', 'success');
+      } else {
+        showStatus('자동저장 완료', 'success', 1000); // 자동저장은 1초만 표시
+      }
+    } catch (error) {
+      console.error('저장 실패:', error);
+      showStatus('메모 저장에 실패했습니다.', 'error');
+    }
+  }
+
+  // 메모 불러오기 함수
+  function loadMemo() {
+    const savedMemo = localStorage.getItem(MEMO_STORAGE_KEY);
+
+    if (savedMemo) {
+      memoEditor.innerHTML = savedMemo;
+      showStatus('메모를 불러왔습니다.', 'success');
+    } else {
+      showStatus('저장된 메모가 없습니다.', 'info');
+    }
+  }
+
+  // 메모 지우기 함수
+  function clearMemo() {
+    memoEditor.innerHTML = defaultContent;
+    showStatus('메모 내용을 지웠습니다.', 'info');
+  }
+
+  // 상태 메시지 표시 함수
+  function showStatus(message, type = 'info', duration = 3000) {
+    statusDisplay.textContent = message;
+
+    // 상태 메시지 스타일 설정
+    switch (type) {
+      case 'success':
+        statusDisplay.style.color = '#4CAF50';
+        break;
+      case 'error':
+        statusDisplay.style.color = '#f44336';
+        break;
+      default:
+        statusDisplay.style.color = '#666';
+    }
+
+    // 지정된 시간 후 메시지 사라짐
+    setTimeout(() => {
+      statusDisplay.textContent = '';
+    }, duration);
+  }
+</script>
+</body>
+</html>
