@@ -8,9 +8,10 @@
 import { type Ref, ref } from 'vue';
 import page_list  from '../node/page_list.json'
 
-const exceptionList = ['ls','lscode','blogcode']
-const list : Ref = ref<Array<string>>([])
 
+const exceptionList = ['ls','lscode','blogcode', 'milkcode', 'moviecode']  // 제외할 디렉토리
+
+const list : Ref = ref<Array<string>>([])
 list.value =  page_list.filter(element => !exceptionList.includes(element));
 
 console.log('--func--list.value: ', list.value);
