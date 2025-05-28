@@ -34,3 +34,14 @@ npm run build
 ### 4. github.io로 배포 요건
 <vite.config.js>
     base: '/milk/',
+
+
+# react github.io에 배포
+
+### package.json
+`"homepage": "/milk"`
+
+
+### vite.config.js
+`base: '/milk',`
+
