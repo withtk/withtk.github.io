@@ -10,6 +10,7 @@ import page_list  from '../node/page_list.json'
 
 
 const exceptionList = ['ls','lscode','blogcode', 'milkcode', 'moviecode']  // 제외할 디렉토리
+console.log('--func--page_list: ', page_list);
 
 const list : Ref = ref<Array<string>>([])
 list.value =  page_list.filter(element => !exceptionList.includes(element));
