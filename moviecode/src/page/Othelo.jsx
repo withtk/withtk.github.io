@@ -204,39 +204,39 @@ const OthelloGame = () => {
           50% { transform: perspective(100px) rotateY(90deg) scale(1.1); }
           100% { transform: perspective(100px) rotateY(180deg) scale(1); }
         }
-        
+
         @keyframes placeDisc {
           0% { transform: scale(0) rotate(0deg); opacity: 0; }
           50% { transform: scale(1.2) rotate(180deg); opacity: 0.8; }
           100% { transform: scale(1) rotate(360deg); opacity: 1; }
         }
-        
+
         @keyframes validMoveGlow {
           0%, 100% { opacity: 0.5; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.2); }
         }
-        
+
         .flip-animation {
           animation: flipDisc 0.5s ease-in-out;
         }
-        
+
         .place-animation {
           animation: placeDisc 0.3s ease-out;
         }
-        
+
         .valid-move-glow {
           animation: validMoveGlow 2s ease-in-out infinite;
         }
-        
+
         .disc-shadow {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(255, 255, 255, 0.2);
         }
-        
+
         .board-cell {
           background: linear-gradient(145deg, #16a34a, #15803d);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .board-cell:hover {
           background: linear-gradient(145deg, #22c55e, #16a34a);
         }

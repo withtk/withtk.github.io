@@ -2,6 +2,7 @@ import { useState } from 'react';
 import reactLogo from '../assets/react.svg';
 import viteLogo from './../../public/vite.svg';
 import Test1 from './../page/Test1.jsx';
+import Othelo from './Othelo.jsx';
 
 export default function Main() {
   const [count, setCount] = useState(0);
@@ -18,6 +19,9 @@ export default function Main() {
       </div>
       <h1>Vite + React + github</h1>
       <Test1 />
+      <div>
+        <Othelo />
+      </div>
       <div className='card'>
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>
