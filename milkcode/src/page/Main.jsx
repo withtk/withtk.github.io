@@ -17,7 +17,7 @@ export default function Main() {
           <img src={reactLogo} className='logo react' alt='React logo' />
         </a>
       </div>
-      <h1>Vite + React + github</h1>
+      <h1>Vite + React + MILK</h1>
       <Test1 />
       <div>
         <Othelo />
