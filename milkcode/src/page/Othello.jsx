@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
-const OthelloGame = () => {
+const Othello = () => {
+  const navigate = useNavigate();
   const BOARD_SIZE = 8;
   const EMPTY = 0;
   const BLACK = 1;
@@ -328,18 +330,29 @@ const OthelloGame = () => {
 
       {/* 재시작 버튼 */}
       <button
-        onClick={resetGame}
-        disabled={animatingDiscs.size > 0}
-        className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform ${
-          animatingDiscs.size > 0
-            ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-            : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 shadow-lg hover:shadow-xl'
-        }`}
+          onClick={resetGame}
+          disabled={animatingDiscs.size > 0}
+          className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform ${
+              animatingDiscs.size > 0
+                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 shadow-lg hover:shadow-xl'
+          }`}
       >
         🎮 새 게임
+      </button>
+      <button
+          onClick={()=>navigate('/')}
+          disabled={animatingDiscs.size > 0}
+          className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform ${
+              animatingDiscs.size > 0
+                  ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  : 'bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 shadow-lg hover:shadow-xl'
+          }`}
+      >
+        홈으로
       </button>
     </div>
   );
 };
 
-export default OthelloGame;
+export default Othello;
