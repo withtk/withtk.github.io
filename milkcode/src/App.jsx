@@ -1,13 +1,8 @@
 import './App.css'
-import { ModalProvider } from './page/ModalContext';
-import Main from './page/Main.jsx';
+import MainPage from './page/MainPage.jsx';
 
-function App() {
-  return (
-    <ModalProvider>
-      <Main />
-    </ModalProvider>
-  );
+export default function App() {
+    return (
+        <MainPage/>
+    );
 }
-
-export default App;

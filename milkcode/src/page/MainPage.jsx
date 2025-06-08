@@ -4,7 +4,7 @@ import viteLogo from './../../public/vite.svg';
 import Test1 from './../page/Test1.jsx';
 import Othelo from './Othelo.jsx';
 
-export default function Main() {
+export default function MainPage() {
   const [count, setCount] = useState(0);
 
   return (
