@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import '../styles/Home.css'
@@ -7,6 +8,7 @@ import { useTheme } from '../context/ThemeContext'
 
 
 export default function Home() {
+  const navigate = useNavigate()
   const [count, setCount] = useState(0)
   const { t, i18n } = useTranslation()
   const { isDarkMode, toggleTheme } = useTheme()
@@ -72,6 +74,11 @@ export default function Home() {
         <p>
           {t('editText')}
         </p>
+      </div>
+      <div className="card">
+        <button class="move" onClick={() => navigate('/game')}>game</button>
+        <button class="move" onClick={() => navigate('/game')}>game</button>
+        <button class="move" onClick={() => navigate('/game')}>game</button>
       </div>
       <p className="read-the-docs">
         {t('readDocs')}
