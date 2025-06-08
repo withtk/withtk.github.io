@@ -3,15 +3,12 @@ import { useTranslation } from 'react-i18next'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { useTheme } from './context/ThemeContext'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [darkMode, setDarkMode] = useState(() => {
-    // 로컬 스토리지에서 테마 설정 가져오기
-    const savedTheme = localStorage.getItem('theme')
-    return savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
   const { t, i18n } = useTranslation()
+  const { isDarkMode, toggleTheme } = useTheme()
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng)
@@ -26,24 +23,6 @@ function App() {
   const isCurrentLanguage = (lng) => {
     return getCurrentLanguage().startsWith(lng)
   }
-  
-  // 다크 모드 전환 함수
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode
-    setDarkMode(newDarkMode)
-    localStorage.setItem('theme', newDarkMode ? 'dark' : 'light')
-  }
-  
-  // 다크 모드 상태가 변경될 때마다 HTML 클래스 업데이트
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-      document.documentElement.classList.remove('light')
-    } else {
-      document.documentElement.classList.add('light')
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
 
   return (
     <>
@@ -73,17 +52,17 @@ function App() {
         <div className="current-language">
           {t('currentLanguage')}: {getCurrentLanguage()}
         </div>
-              </div>
+      </div>
               
-              <div className="theme-toggle">
+      <div className="theme-toggle">
         <button 
-          onClick={toggleDarkMode}
+          onClick={toggleTheme}
           className="theme-button"
         >
-          {darkMode ? t('lightMode') : t('darkMode')}
-          <span className="theme-icon">{darkMode ? '☀️' : '🌙'}</span>
+          {isDarkMode ? t('lightMode') : t('darkMode')}
+          <span className="theme-icon">{isDarkMode ? '☀️' : '🌙'}</span>
         </button>
-              </div>
+      </div>
               
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
