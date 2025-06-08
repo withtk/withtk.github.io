@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node node/move_build_files.js",
-    "lint": "eslint movie-react",
-    "preview": "vite preview"
+    "build:dev": "vite build --mode development",
+    "build:prod": "vite build --mode production",
+    "lint": "eslint src",
+    "preview": "vite preview",
+    "env:check": "node -e \"console.log('환경 변수:', JSON.stringify(process.env, null, 2))\""
   },
   "dependencies": {
     "antd": "^5.25.4",
