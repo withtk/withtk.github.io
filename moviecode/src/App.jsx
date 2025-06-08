@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, Login } from './pages';
 import './App.css';
 import { ConfigProvider } from 'antd';
@@ -12,29 +12,29 @@ const isAuthenticated = () => {
 // 보호된 라우트 컴포넌트
 function ProtectedRoute({ children }) {
   if (!isAuthenticated()) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to='/login' replace />;
   }
-  
+
   return children;
 }
 
 function App() {
   return (
     <ConfigProvider locale={koKR}>
-      <Router basename="/movie">
+      <BrowserRouter basename='/movie'>
         <Routes>
-          <Route 
-            path="/" 
+          <Route
+            path='/'
             element={
               <ProtectedRoute>
                 <Home />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </ConfigProvider>
   );
 }

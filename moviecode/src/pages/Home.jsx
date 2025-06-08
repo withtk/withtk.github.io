@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Typography, Layout } from 'antd';
 import reactLogo from '../assets/react.svg';
 import viteLogo from '/vite.svg';
+import '../styles/common.css';
+import '../styles/Home.css';
 
 const { Header, Content } = Layout;
 const { Title, Paragraph } = Typography;
@@ -21,13 +23,13 @@ function Home() {
 
   return (
     <Layout className="layout">
-      <Header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>
+      <Header className="home-header">
+        <div className="home-logo">
           영화 플랫폼
         </div>
         {user ? (
-          <div style={{ color: 'white' }}>
-            <span style={{ marginRight: '10px' }}>{user.username}님 환영합니다</span>
+          <div className="home-user-info">
+            <span>{user.username}님 환영합니다</span>
             <Button type="primary" onClick={handleLogout}>로그아웃</Button>
           </div>
         ) : (
@@ -35,48 +37,44 @@ function Home() {
         )}
       </Header>
       
-      <Content style={{ padding: '50px', minHeight: 'calc(100vh - 64px)' }}>
-        <div className="home-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '20px' }}>
+      <Content>
+        <div className="responsive-container">
+          <div className="home-content">
+            <div className="home-logo-container">
               <a href="https://vite.dev" target="_blank" rel="noreferrer">
-                <img src={viteLogo} className="logo" alt="Vite logo" style={{ height: '100px' }} />
+                <img src={viteLogo} className="home-logo-image" alt="Vite logo" />
               </a>
               <a href="https://react.dev" target="_blank" rel="noreferrer">
-                <img src={reactLogo} className="logo react" alt="React logo" style={{ height: '100px' }} />
+                <img src={reactLogo} className="home-logo-image" alt="React logo" />
               </a>
             </div>
-            <Title>Vite + React + 영화 플랫폼</Title>
+            <Title className="responsive-title">
+              Vite + React + 영화 플랫폼
+            </Title>
             
-            <div style={{ margin: '20px 0' }}>
+            <div className="responsive-margin">
               <Button onClick={() => setCount((count) => count + 1)}>
                 카운트: {count}
               </Button>
             </div>
             
-            <Paragraph>
+            <Paragraph className="responsive-text">
               <code>src/pages/Home.jsx</code>를 수정하여 홈 화면을 커스터마이징할 수 있습니다.
             </Paragraph>
           </div>
           
-          {/* 영화 관련 콘텐츠가 이곳에 들어갈 수 있습니다 */}
-          <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <Title level={3}>지금 인기있는 영화</Title>
-            <div style={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              flexWrap: 'wrap', 
-              gap: '20px',
-              marginTop: '20px' 
-            }}>
-              {/* 여기에 영화 목록이 표시됩니다 */}
-              <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '8px', width: '200px', height: '300px' }}>
+          <div className="responsive-margin">
+            <Title level={3} className="responsive-subtitle">
+              지금 인기있는 영화
+            </Title>
+            <div className="responsive-grid">
+              <div className="movie-card">
                 영화 1
               </div>
-              <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '8px', width: '200px', height: '300px' }}>
+              <div className="movie-card">
                 영화 2
               </div>
-              <div style={{ background: '#f0f0f0', padding: '20px', borderRadius: '8px', width: '200px', height: '300px' }}>
+              <div className="movie-card">
                 영화 3
               </div>
             </div>
