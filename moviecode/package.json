@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "vite build && node node/move_build_files.js",
+    "build": "vite build",
     "build:dev": "vite build --mode development",
-    "build:prod": "vite build --mode production",
+    "build:prod": "vite build && node node/move_build_files.js",
     "lint": "eslint src",
     "preview": "vite preview",
     "env:check": "node -e \"console.log('환경 변수:', JSON.stringify(process.env, null, 2))\""
