@@ -27,7 +27,7 @@ function Login() {
     <div className="login-container">
       <div className="login-form-container">
         <Title level={2} className="login-title">
-          로그인 {import.meta.env.VITE_APP_TITLE}
+          로그인 {import.meta.env.VITE_APP_TITLE} {import.meta.env.VITE_BASE_URL}
         </Title>
 
         <Form
