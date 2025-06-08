@@ -33,6 +33,10 @@ export default function Home() {
                     </button>
                 </div>
             </div>
+            <div className="game-section">
+                    <button className="game-button" onClick={() => navigate('/test1')}>test1
+                    </button>
+            </div>
             <div className='card'>
                 <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
                 <p>
