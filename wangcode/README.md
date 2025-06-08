@@ -15,3 +15,17 @@ npm run build
 3. 그 안에 빌드파일 넣기
 
 실행전 TARGET_DIR_NAME(move_build_Files.js) 변경할 것.
+
+
+
+### vite.config.js
+base : '/'  for dev
+
+github.io에 배포할 때
+1. '/wang'로 수정
+2. npm run build:prod
+
+다른 서버에 배포할 때
+1. '/'로 수정
+2. npm run build:dev
+3. dist 디렉토리로 경로설정

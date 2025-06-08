@@ -27,9 +27,9 @@ function Login() {
     <div className="login-container">
       <div className="login-form-container">
         <Title level={2} className="login-title">
-          로그인
+          로그인 {import.meta.env.VITE_APP_TITLE} {import.meta.env.VITE_BASE_URL}
         </Title>
-        
+
         <Form
           name="login"
           className="login-form"
@@ -53,9 +53,9 @@ function Login() {
           </Form.Item>
 
           <Form.Item className="login-form-item">
-            <Button 
-              type="primary" 
-              htmlType="submit" 
+            <Button
+              type="primary"
+              htmlType="submit"
               className="login-form-button"
               loading={loading}
             >
