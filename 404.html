@@ -13,7 +13,9 @@
 
       body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+          /*background: #071e54;*/
+          background: linear-gradient(353deg,rgba(7, 30, 84, 1) 0%, rgba(9, 9, 121, 1) 30%, rgba(0, 145, 255, 1) 100%);
+          /*background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);*/
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -350,6 +352,19 @@
           line-height: 1.6;
       }
 
+      .error-details {
+          font-size: 0.75rem;
+          color: #888;
+          margin-bottom: 1.5rem;
+          padding: 8px 12px;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 8px;
+          border-left: 3px solid #1a237e;
+          font-family: 'Courier New', monospace;
+          text-align: left;
+          line-height: 1.4;
+      }
+
       .btn {
           display: inline-block;
           padding: 15px 35px;
@@ -496,7 +511,15 @@
     찾으시는 페이지가 없거나 이동되었을 수 있습니다.<br>
     주소를 다시 확인해주시거나 홈페이지로 돌아가세요.
   </p>
-  <a href="/" class="btn">홈으로 돌아가기</a>
+
+  <div class="error-details">
+    <strong>File not found</strong><br>
+    The site configured at this address does not contain the requested file.<br>
+    If this is your site, make sure that the filename case matches the URL as well as any file permissions. For root URLs (like <code>http://example.com/</code>) you must provide an <code>index.html</code> file.<br>
+    <a href="https://docs.github.com/ko/pages" target="_blank">Read the full documentation</a> for more information about using <strong>GitHub Pages</strong>.
+  </div>
+
+  <a href="https://withtk.github.io/" class="btn">홈으로 돌아가기</a>
 </div>
 </body>
 </html>

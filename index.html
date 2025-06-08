@@ -1,28 +1,781 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <meta name="viewport"
-        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-  <title>intro</title>
-  <!--    <link href="css/style.css" rel="stylesheet" />-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>withtk🌟</title>
   <style>
-      .btn1 {
-          text-decoration: none;
-          background-color: transparent
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
       }
 
-      .btn1:hover {
-          /*background-color: #f3f1;*/
+      body {
+          font-family: 'Nunito', sans-serif;
+          background: linear-gradient(353deg, rgba(7, 30, 84, 1) 0%, rgba(9, 9, 121, 1) 30%, rgba(0, 145, 255, 1) 100%);
+          min-height: 100vh;
+          overflow-x: hidden;
+          position: relative;
+          color: #333;
+      }
+
+      /* 귀여운 배경 파티클들 */
+      .cute-particle {
+          position: absolute;
+          font-size: 1.5em;
+          animation: float-cute 6s infinite linear;
+          opacity: 0.8;
+      }
+
+      .cute-particle:nth-child(1) {
+          top: 10%;
+          left: 10%;
+          animation-delay: 0s;
+      }
+
+      .cute-particle:nth-child(2) {
+          top: 20%;
+          left: 80%;
+          animation-delay: 1s;
+      }
+
+      .cute-particle:nth-child(3) {
+          top: 70%;
+          left: 20%;
+          animation-delay: 2s;
+      }
+
+      .cute-particle:nth-child(4) {
+          top: 80%;
+          left: 90%;
+          animation-delay: 3s;
+      }
+
+      .cute-particle:nth-child(5) {
+          top: 40%;
+          left: 70%;
+          animation-delay: 4s;
+      }
+
+      .cute-particle:nth-child(6) {
+          top: 60%;
+          left: 30%;
+          animation-delay: 5s;
+      }
+
+      @keyframes float-cute {
+          0% {
+              transform: translateY(100vh) translateX(0px) rotate(0deg);
+              opacity: 0;
+          }
+          10% {
+              opacity: 0.8;
+          }
+          90% {
+              opacity: 0.8;
+          }
+          100% {
+              transform: translateY(-100px) translateX(30px) rotate(360deg);
+              opacity: 0;
+          }
+      }
+
+      /* 귀여운 도형들 */
+      .cute-shape {
+          position: absolute;
+          animation: bounce-shape 3s infinite ease-in-out;
+      }
+
+      .star-shape {
+          font-size: 2em;
+          color: #ffd700;
+          top: 25%;
+          left: 15%;
+          animation-delay: 0s;
+      }
+
+      .heart-shape {
+          font-size: 1.8em;
+          color: #ff6b9d;
+          top: 65%;
+          left: 85%;
+          animation-delay: 1s;
+      }
+
+      .rainbow-shape {
+          font-size: 2.2em;
+          top: 45%;
+          left: 5%;
+          animation-delay: 2s;
+      }
+
+      @keyframes bounce-shape {
+          0%, 100% {
+              transform: translateY(0px) scale(1);
+          }
+          50% {
+              transform: translateY(-20px) scale(1.1);
+          }
+      }
+
+      /* 플로팅 이모지들 */
+      .floating-emoji {
+          position: absolute;
+          font-size: 1.5em;
+          animation: emoji-float 4s infinite ease-in-out;
+      }
+
+      .floating-emoji:nth-child(9) {
+          top: 30%;
+          right: 20%;
+          animation-delay: 0s;
+      }
+
+      .floating-emoji:nth-child(10) {
+          bottom: 30%;
+          left: 10%;
+          animation-delay: 2s;
+      }
+
+      @keyframes emoji-float {
+          0%, 100% {
+              transform: translateX(0px) rotate(0deg);
+              opacity: 0.7;
+          }
+          50% {
+              transform: translateX(15px) rotate(180deg);
+              opacity: 1;
+          }
+      }
+
+      /* 메인 컨테이너 */
+      .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          padding: 20px;
+          text-align: center;
+          position: relative;
+          z-index: 10;
+      }
+
+      /* 웰컴 섹션 */
+      .welcome-section {
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 25px;
+          padding: 50px 40px;
+          margin-bottom: 40px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+          0 0 0 3px rgba(255, 182, 193, 0.3);
+          transform: translateY(20px);
+          animation: slideInUp 1s ease-out forwards;
+          backdrop-filter: blur(10px);
+          position: relative;
+          overflow: visible;
+      }
+
+      /* withtk 태그 */
+      .withtk-tag {
+          position: absolute;
+          top: -10px;
+          right: 20px;
+          background: linear-gradient(45deg, #ff6b9d, #667eea);
+          color: white;
+          padding: 5px 12px;
+          border-radius: 15px;
+          font-size: 0.7em;
+          font-weight: 700;
+          animation: tag-wave 2s infinite ease-in-out;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 100;
+      }
+
+      .withtk-tag::before {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          transform: translateX(-50%) rotate(45deg);
+          width: 10px;
+          height: 10px;
+          background: linear-gradient(45deg, #ff6b9d, #667eea);
+      }
+
+      .withtk-tag a {
+          text-decoration: none;
+          font-family: inherit; /* 부모의 font-family를 상속받음 */
+          font-size: inherit; /* 부모의 font-size를 상속받음 */
+          font-weight: inherit;
+          color: inherit; /* 부모의 color를 상속받음 */
+      }
+
+
+      @keyframes tag-wave {
+          0%, 100% {
+              transform: rotate(-2deg) translateY(0px);
+          }
+          50% {
+              transform: rotate(2deg) translateY(-3px);
+          }
+      }
+
+      @keyframes slideInUp {
+          to {
+              transform: translateY(0);
+              opacity: 1;
+          }
+      }
+
+      .welcome-title {
+          font-size: 3em;
+          background: linear-gradient(45deg, #ff6b9d, #667eea, #764ba2);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 20px;
+          animation: bounce-title 2s infinite;
+          font-weight: 800;
+      }
+
+      @keyframes bounce-title {
+          0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0);
+          }
+          40% {
+              transform: translateY(-8px);
+          }
+          60% {
+              transform: translateY(-4px);
+          }
+      }
+
+      .welcome-text {
+          font-size: 1.2em;
+          color: #555;
+          margin-bottom: 30px;
+          line-height: 1.6;
+          font-weight: 600;
+      }
+
+      /* 젊은 남성 캐릭터 */
+      .young-character {
+          font-size: 8em;
+          margin: 20px 0;
+          animation: character-dance 3s infinite ease-in-out;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+          filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+      }
+
+      .young-character:hover {
+          transform: scale(1.15);
+      }
+
+      @keyframes character-dance {
+          0%, 100% {
+              transform: rotate(0deg);
+          }
+          25% {
+              transform: rotate(-5deg) scale(1.05);
+          }
+          75% {
+              transform: rotate(5deg) scale(1.05);
+          }
+      }
+
+      /* 이미지 버튼들 */
+      .buttons-container {
+          display: flex;
+          gap: 25px;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 30px;
+      }
+
+      .image-button {
+          width: 120px;
+          height: 120px;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          animation: button-pulse 3s infinite;
+          border: 3px solid transparent;
+          background: linear-gradient(white, white) padding-box,
+          linear-gradient(45deg, #ff6b9d, #667eea) border-box;
+      }
+
+      .image-button:hover {
+          transform: translateY(-8px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-explore {
+          background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+          animation-delay: 0s;
+      }
+
+      .btn-posts {
+          background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+          animation-delay: 0.5s;
+      }
+
+      .btn-contact {
+          background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+          animation-delay: 1s;
+      }
+
+      @keyframes button-pulse {
+          0%, 100% {
+              box-shadow: 0 0 0 0 rgba(255, 107, 157, 0.4);
+          }
+          50% {
+              box-shadow: 0 0 0 8px rgba(255, 107, 157, 0);
+          }
+      }
+
+      /* 버튼 아이콘 및 텍스트 */
+      .button-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          padding: 15px;
+      }
+
+      .button-icon {
+          font-size: 3em;
+          margin-bottom: 8px;
+          animation: icon-bounce 2s infinite;
+      }
+
+      .button-text {
+          font-size: 0.9em;
+          font-weight: 700;
+          color: #555;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+      }
+
+      @keyframes icon-bounce {
+          0%, 100% {
+              transform: translateY(0);
+          }
+          50% {
+              transform: translateY(-3px);
+          }
+      }
+
+      /* 소셜 섹션 */
+      .social-section {
+          margin-top: 50px;
+          animation: fadeInUp 1.5s ease-out;
+      }
+
+      .social-title {
+          color: white;
+          margin-bottom: 25px;
+          font-size: 1.3em;
+          font-weight: 700;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .social-icons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          margin-top: 20px;
+      }
+
+      .social-icon {
+          width: 65px;
+          height: 65px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, #ff6b9d, #667eea);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.8em;
+          color: white;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          animation: social-float 3s infinite ease-in-out;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .social-icon:nth-child(1) {
+          animation-delay: 0s;
+      }
+
+      .social-icon:nth-child(2) {
+          animation-delay: 0.5s;
+      }
+
+      .social-icon:nth-child(3) {
+          animation-delay: 1s;
+      }
+
+      .social-icon:nth-child(4) {
+          animation-delay: 1.5s;
+      }
+
+      .social-icon:hover {
+          transform: scale(1.15) rotate(10deg);
+          box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      @keyframes social-float {
+          0%, 100% {
+              transform: translateY(0px);
+          }
+          50% {
+              transform: translateY(-8px);
+          }
+      }
+
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      /* 팝업 모달 */
+      .popup-modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.6);
+          backdrop-filter: blur(8px);
+      }
+
+      .popup-content {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          margin: 8% auto;
+          padding: 35px;
+          border-radius: 25px;
+          width: 90%;
+          max-width: 500px;
+          position: relative;
+          animation: popupSlideIn 0.5s ease-out;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+          color: white;
+      }
+
+      @keyframes popupSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px) scale(0.8);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+          }
+      }
+
+      .popup-header {
+          font-size: 1.8em;
+          margin-bottom: 20px;
+          text-align: center;
+          font-weight: 800;
+      }
+
+      .popup-text {
+          font-size: 1.1em;
+          line-height: 1.7;
+          text-align: center;
+          margin-bottom: 20px;
+          font-weight: 600;
+      }
+
+      .close-btn {
+          color: white;
+          float: right;
+          font-size: 32px;
+          font-weight: bold;
+          cursor: pointer;
+          position: absolute;
+          right: 20px;
+          top: 15px;
+          transition: all 0.3s ease;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .close-btn:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: rotate(90deg);
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 768px) {
+          .welcome-title {
+              font-size: 2.3em;
+          }
+
+          .welcome-section {
+              padding: 35px 25px;
+          }
+
+          .young-character {
+              font-size: 6em;
+          }
+
+          .buttons-container {
+              gap: 15px;
+          }
+
+          .image-button {
+              width: 100px;
+              height: 100px;
+          }
+
+          .button-icon {
+              font-size: 2.5em;
+          }
+
+          .button-text {
+              font-size: 0.8em;
+          }
+
+          .social-icons {
+              gap: 15px;
+          }
+
+          .social-icon {
+              width: 55px;
+              height: 55px;
+              font-size: 1.5em;
+          }
       }
   </style>
 </head>
 <body>
+<!-- 배경 장식 요소들 -->
+<div class="cute-particle">🌟</div>
+<div class="cute-particle">✨</div>
+<div class="cute-particle">💫</div>
+<div class="cute-particle">🎈</div>
+<div class="cute-particle">🎉</div>
+<div class="cute-particle">🌈</div>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<p style="margin: 30px">withtk</p>
-<a href="http://withtk.github.io/ls" class="btn1">&nbsp;&nbsp;&nbsp;&nbsp;</a>
+<div class="cute-shape star-shape">⭐</div>
+<div class="cute-shape heart-shape">💖</div>
+<div class="cute-shape rainbow-shape">🌈</div>
+
+<div class="floating-emoji">🦋</div>
+<div class="floating-emoji">🌸</div>
+
+<div class="container">
+  <div class="welcome-section">
+    <div class="withtk-tag"><a href="https://withtk.github.io/ls/">withtk</a></div>
+
+    <h1 class="welcome-title">
+      click 🌟
+    </h1>
+
+    <div class="young-character" onclick="changeCharacter()">
+      👦
+    </div>
+
+    <p class="welcome-text">
+      안녕하세요! 젊고 활기찬 블로그에 오신 걸 환영해요! 🎉<br>
+      재미있고 신선한 콘텐츠로 가득한 이곳에서<br>
+      <strong>즐거운 시간 보내세요!</strong> ✨
+    </p>
+
+    <div class="buttons-container">
+      <div class="image-button btn-explore" onclick="openPopup('explore')">
+        <div class="button-content">
+          <div class="button-icon">🚀</div>
+          <div class="button-text">Explore</div>
+        </div>
+      </div>
+      <div class="image-button btn-posts" onclick="openPopup('posts')">
+        <div class="button-content">
+          <div class="button-icon">📝</div>
+          <div class="button-text">Posts</div>
+        </div>
+      </div>
+      <div class="image-button btn-contact" onclick="openPopup('contact')">
+        <div class="button-content">
+          <div class="button-icon">💌</div>
+          <div class="button-text">Contact</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-section">
+    <h3 class="social-title">소셜에서도 만나요! 🤗</h3>
+    <div class="social-icons">
+      <a href="#" class="social-icon" onclick="openPopup('instagram')">📸</a>
+      <a href="#" class="social-icon" onclick="openPopup('youtube')">🎬</a>
+      <a href="#" class="social-icon" onclick="openPopup('twitter')">🐦</a>
+      <a href="#" class="social-icon" onclick="openPopup('github')">💻</a>
+    </div>
+  </div>
+</div>
+
+<!-- 팝업 모달 -->
+<div id="popup-modal" class="popup-modal">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <div class="popup-header" id="popup-header">Welcome</div>
+    <div class="popup-text" id="popup-text">Content will be loaded here</div>
+  </div>
+</div>
+
+<script>
+  const popupContent = {
+    explore: {
+      header: '블로그 탐험하기! 🚀',
+      text: '와우! 정말 멋진 선택이에요! 🎉 여기서 재미있는 포스트들, 개발 이야기, 일상 공유 등 다양한 콘텐츠를 만날 수 있어요. 매일 새로운 발견이 있을 거예요!',
+    },
+    posts: {
+      header: '최신 포스트들! 📝',
+      text: '따끈따끈한 새 글들이 기다리고 있어요! ✨ 기술 블로그, 일상 이야기, 취미 공유까지 다양한 주제로 매주 업데이트하고 있답니다. 구독하고 놓치지 마세요!',
+    },
+    contact: {
+      header: '연락하기! 💌',
+      text: '언제든 연락 주세요! 🤗 궁금한 점, 협업 제안, 또는 그냥 안녕 인사도 좋아요! 빠른 시일 내에 답변드릴게요. 함께 재미있는 프로젝트 해봐요!',
+    },
+    instagram: {
+      header: '인스타그램! 📸',
+      text: '일상의 소소한 순간들을 공유해요! 📷 맛집, 여행, 개발 현장 뒷이야기까지! 스토리도 자주 올리니까 팔로우하고 놓치지 마세요!',
+    },
+    youtube: {
+      header: '유튜브 채널! 🎬',
+      text: '동영상으로 더 생생하게 만나요! 🎥 코딩 튜토리얼, vlog, 리뷰 영상 등을 업로드하고 있어요. 구독과 좋아요는 큰 힘이 됩니다!',
+    },
+    twitter: {
+      header: '트위터! 🐦',
+      text: '실시간으로 생각을 나누는 공간이에요! 💭 개발 팁, 일상 트윗, 유용한 정보 리트윗까지! 팔로우하면 더 많은 소식을 받을 수 있어요!',
+    },
+    github: {
+      header: '깃허브! 💻',
+      text: '코드로 소통해요! 👨‍💻 오픈소스 프로젝트, 개인 프로젝트들을 공유하고 있어요. 스타와 포크는 개발자에게 최고의 선물이에요!',
+    },
+  };
+
+
+  const youngCharacters = ['👦', '🧑', '👨‍💻', '👨‍🎓', '👨‍🎨', '👨‍🚀', '🤓', '😎'];
+  let currentCharacterIndex = 0;
+  console.log('----currentCharacterIndex: ', currentCharacterIndex);
+
+  function changeCharacter() {
+    const characterElement = document.querySelector('.young-character');
+    currentCharacterIndex = (Math.floor(Math.random() * 10) + 1) % youngCharacters.length;
+    characterElement.textContent = youngCharacters[currentCharacterIndex];
+
+    // 클릭 효과 추가
+    characterElement.style.transform = 'scale(1.3) rotate(15deg)';
+    setTimeout(() => {
+      characterElement.style.transform = 'scale(1) rotate(0deg)';
+    }, 300);
+  }
+
+  function openPopup(type) {
+    const modal = document.getElementById('popup-modal');
+    const header = document.getElementById('popup-header');
+    const text = document.getElementById('popup-text');
+
+    const content = popupContent[type];
+    header.textContent = content.header;
+    text.textContent = content.text;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup() {
+    const modal = document.getElementById('popup-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // 모달 외부 클릭 시 닫기
+  window.onclick = function(event) {
+    const modal = document.getElementById('popup-modal');
+    if (event.target === modal) {
+      closePopup();
+    }
+  };
+
+  // ESC 키로 모달 닫기
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closePopup();
+    }
+  });
+
+  // 페이지 로드 시 환영 효과
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      const welcomeSection = document.querySelector('.welcome-section');
+      welcomeSection.style.transform = 'translateY(0) scale(1.02)';
+      setTimeout(() => {
+        welcomeSection.style.transform = 'translateY(0) scale(1)';
+      }, 300);
+    }, 500);
+  });
+
+  // 랜덤 귀여운 파티클 생성
+  function createCuteParticle() {
+    const cuteEmojis = ['✨', '🌟', '💫', '🎈', '🎉', '🌸', '🦋', '💝', '🌈'];
+    const particle = document.createElement('div');
+    particle.className = 'cute-particle';
+    particle.textContent = cuteEmojis[Math.floor(Math.random() * cuteEmojis.length)];
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.remove();
+      }
+    }, 8000);
+  }
+
+  // 3초마다 새로운 귀여운 파티클 생성
+  setInterval(createCuteParticle, 3000);
+
+  // 버튼 호버 효과 강화
+  document.querySelectorAll('.image-button').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      const icon = this.querySelector('.button-icon');
+      icon.style.transform = 'scale(1.2) rotate(10deg)';
+    });
+
+    button.addEventListener('mouseleave', function() {
+      const icon = this.querySelector('.button-icon');
+      icon.style.transform = 'scale(1) rotate(0deg)';
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM이 로드되었습니다.');
+    // 실행할 코드
+    changeCharacter();
+  });
+</script>
 </body>
 </html>
