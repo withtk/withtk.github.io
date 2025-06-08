@@ -85,14 +85,29 @@
 
 .language-selector button {
   padding: 5px 10px;
-  background-color: #1a1a1a;
+  background-color: #646cff;
+  color: white;
   border: 1px solid transparent;
+  border-radius: 4px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
 }
 
 .language-selector button:hover {
-  border-color: #646cff;
+  background-color: #535bf2;
+  border-color: #535bf2;
+}
+
+.language-selector button.active {
+  background-color: #535bf2;
+  border: 2px solid #fff;
+  font-weight: bold;
+}
+
+.current-language {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #888;
 }
 .card {
   padding: 2em;
