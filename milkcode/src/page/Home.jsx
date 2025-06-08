@@ -1,11 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import reactLogo from '../assets/react.svg';
 import viteLogo from './../../public/vite.svg';
 import Test1 from './../page/Test1.jsx';
 import Othelo from './Othelo.jsx';
 
-export default function MainPage() {
+export default function Home() {
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
+
+  const goToOthelo = () => {
+    navigate('/othelo');
+  };
 
   return (
     <>
@@ -17,7 +23,14 @@ export default function MainPage() {
           <img src={reactLogo} className='logo react' alt='React logo' />
         </a>
       </div>
-      <h1>Vite + React + MILK</h1>
+      <h1>Vite + React + MILK {import.meta.env.VITE_APP_TITLE}</h1>
+      <div className="game-section">
+        <div className="game-card">
+          <h2>오셀로 게임</h2>
+          <p>전략적인 보드 게임 오셀로를 즐겨보세요!</p>
+          <button className="game-button" onClick={goToOthelo}>게임 시작하기</button>
+        </div>
+      </div>
       <Test1 />
       <div>
         <Othelo />
