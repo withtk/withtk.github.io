@@ -1,0 +1,9 @@
+{
+  "welcome": "환영합니다",
+  "home": "홈",
+  "about": "소개",
+  "language": "언어",
+  "counter": "카운터: {{count}}",
+  "editText": "src/App.jsx를 편집하고 저장하여 HMR을 테스트하세요",
+  "readDocs": "더 자세한 내용은 Vite와 React 로고를 클릭하세요"
+}
