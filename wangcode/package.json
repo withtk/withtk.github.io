@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:dev": "vite build --mode development",
     "build": "vite build && node node/move_build_files.js",
     "lint": "eslint .",
     "preview": "vite preview"

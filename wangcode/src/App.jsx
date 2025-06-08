@@ -34,7 +34,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>WANG {import.meta.env.VITE_APP_TITLE} {import.meta.env.VITE_BASE_URL}</h1>
       <div className="language-selector">
         <p>{t('language')}:</p>
         <button 
