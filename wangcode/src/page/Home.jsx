@@ -77,8 +77,8 @@ export default function Home() {
       </div>
       <div className="card">
         <button class="move" onClick={() => navigate('/game')}>game</button>
-        <button class="move" onClick={() => navigate('/game')}>game</button>
-        <button class="move" onClick={() => navigate('/game')}>game</button>
+        <button class="move" onClick={() => navigate('/dash')}>dash</button>
+        <button class="move" onClick={() => navigate('/how')}>how</button>
       </div>
       <p className="read-the-docs">
         {t('readDocs')}

@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap');
+
+.design-root {
+  font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
+}
+
+.layout-container {
+  min-height: 100vh;
+  background-color: #111418;
+  overflow-x: hidden;
+}
+
+.header {
+  border-bottom: 1px solid #293038;
+  padding: 0.75rem 2.5rem;
+}
+
+.header-logo {
+  width: 1rem;
+  height: 1rem;
+}
+
+.header-title {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.nav-link {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.primary-button {
+  background-color: #1980e6;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  min-width: 84px;
+  max-width: 480px;
+  height: 2.5rem;
+}
+
+.secondary-button {
+  background-color: #293038;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  min-width: 84px;
+  max-width: 480px;
+  height: 2.5rem;
+}
+
+.content-container {
+  width: 512px;
+  max-width: 512px;
+  padding: 1.25rem 0;
+}
+
+.page-title {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 1.25rem 1rem 0.75rem;
+  text-align: center;
+}
+
+.page-description {
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.25rem 1rem 0.75rem;
+}
+
+.section-title {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.step-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.step-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: white;
+}
+
+.step-connector {
+  width: 1.5px;
+  background-color: #3c4753;
+  height: 1rem;
+  flex-grow: 1;
+}
+
+.step-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.75rem 0 1.25rem;
+}
+
+.step-text {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.play-now-button {
+  background-color: #1980e6;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0 1.25rem;
+  border-radius: 9999px;
+  min-width: 84px;
+  max-width: 480px;
+  height: 3rem;
+  flex: 1;
+} 
