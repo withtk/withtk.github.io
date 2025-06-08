@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, Login } from './pages';
 import './App.css';
 import { ConfigProvider } from 'antd';
@@ -21,7 +21,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <ConfigProvider locale={koKR}>
-      <Router basename='/movie'>
+      <BrowserRouter basename='/movie'>
         <Routes>
           <Route
             path='/'
@@ -34,7 +34,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </ConfigProvider>
   );
 }
