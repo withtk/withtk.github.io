@@ -21,7 +21,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <ConfigProvider locale={koKR}>
-      <BrowserRouter basename='/movie'>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route
             path='/'
