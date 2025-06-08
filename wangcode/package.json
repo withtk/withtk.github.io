@@ -1,5 +1,5 @@
 {
-  "name": "moviecode",
+  "name": "wang",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^5.25.2",
+    "i18next": "^23.16.8",
+    "i18next-browser-languagedetector": "^7.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "react-i18next": "^14.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -26,5 +27,5 @@
     "globals": "^16.0.0",
     "vite": "^6.3.5"
   },
-  "homepage": "/milk"
+  "homepage": "/wang"
 }

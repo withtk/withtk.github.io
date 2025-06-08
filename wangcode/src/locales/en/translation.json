@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome",
+  "home": "Home",
+  "about": "About",
+  "language": "Language",
+  "counter": "Count is: {{count}}",
+  "editText": "Edit src/App.jsx and save to test HMR",
+  "readDocs": "Click on the Vite and React logos to learn more",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "currentLanguage": "Current Language",
+  "theme": "Theme"
+}

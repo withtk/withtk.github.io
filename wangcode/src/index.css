@@ -1,0 +1,107 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* 다크 모드 변수 (기본값) */
+  --bg-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --primary-color: #646cff;
+  --primary-hover-color: #535bf2;
+  --button-bg: #1a1a1a;
+  --card-bg: #1a1a1a;
+  --border-color: transparent;
+  --muted-text: #888;
+
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 라이트 모드 변수 */
+.light {
+  --bg-color: #ffffff;
+  --text-color: #213547;
+  --primary-color: #646cff;
+  --primary-hover-color: #535bf2;
+  --button-bg: #f9f9f9;
+  --card-bg: #f0f0f0;
+  --border-color: #e0e0e0;
+  --muted-text: #666;
+}
+
+/* 다크 모드 변수 */
+.dark {
+  --bg-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --primary-color: #646cff;
+  --primary-hover-color: #535bf2;
+  --button-bg: #1a1a1a;
+  --card-bg: #1a1a1a;
+  --border-color: #333;
+  --muted-text: #888;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--primary-hover-color);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+button:hover {
+  border-color: var(--primary-color);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* 더 이상 필요하지 않음 - CSS 변수로 대체 */
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
