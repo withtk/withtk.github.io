@@ -1,0 +1,75 @@
+/* Common styles */
+.layout {
+  min-height: 100vh;
+}
+
+/* Responsive utilities */
+.responsive-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 50px);
+}
+
+.responsive-title {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  text-align: center;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  text-align: center;
+}
+
+.responsive-text {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.responsive-gap {
+  gap: clamp(10px, 3vw, 20px);
+}
+
+.responsive-padding {
+  padding: clamp(10px, 3vw, 20px);
+}
+
+.responsive-margin {
+  margin: clamp(20px, 5vw, 40px);
+}
+
+/* Responsive grid */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(10px, 3vw, 20px);
+}
+
+/* Responsive flex */
+.responsive-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 3vw, 20px);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  
+  .mobile-full-width {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hide-on-tablet {
+    display: none;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hide-on-desktop {
+    display: none;
+  }
+} 

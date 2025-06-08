@@ -1,0 +1,79 @@
+/* Home page specific styles */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.home-logo {
+  color: white;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-weight: bold;
+}
+
+.home-user-info {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-logo-container {
+  display: flex;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 20px);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.home-logo-image {
+  height: clamp(60px, 10vw, 100px);
+  width: auto;
+}
+
+.movie-card {
+  background: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+/* Media queries for Home page */
+@media (max-width: 768px) {
+  .home-header {
+    padding: 10px;
+  }
+  
+  .home-user-info {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-logo-container {
+    gap: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .home-content {
+    padding: 0 40px;
+  }
+} 
