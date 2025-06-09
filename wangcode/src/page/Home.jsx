@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -5,7 +6,6 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import '../styles/Home.css'
 import { useTheme } from '../context/ThemeContext'
-
 
 export default function Home() {
   const navigate = useNavigate()
@@ -28,61 +28,31 @@ export default function Home() {
   }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="design-root">
+      <div className="layout-container">
+        <header className="header">
+          <h1 className="header-title">King Game</h1>
+          <nav className="nav-links">
+            <a href="/" className="nav-link active">Home</a>
+            <a href="/how" className="nav-link">How to Play</a>
+            <a href="/dash" className="nav-link">Dashboard</a>
+          </nav>
+        </header>
+        <main className="content-container">
+          <h2 className="page-title">Welcome to King Game</h2>
+          <p className="page-description">
+            Experience the ultimate strategy game where you can become the King! Challenge your friends and compete for the throne.
+          </p>
+          <div className="button-group">
+            <button className="primary-button">
+              <span>Play Now</span>
+            </button>
+            <button className="secondary-button">
+              <span>Learn More</span>
+            </button>
+          </div>
+        </main>
       </div>
-      <h1>WANG {import.meta.env.VITE_APP_TITLE} {import.meta.env.VITE_BASE_URL}</h1>
-      <div className="language-selector">
-        <p>{t('language')}:</p>
-        <button
-          onClick={() => changeLanguage('ko')}
-          className={isCurrentLanguage('ko') ? 'active' : ''}
-        >
-          한국어
-        </button>
-        <button
-          onClick={() => changeLanguage('en')}
-          className={isCurrentLanguage('en') ? 'active' : ''}
-        >
-          English
-        </button>
-        <div className="current-language">
-          {t('currentLanguage')}: {getCurrentLanguage()}
-        </div>
-      </div>
-
-      <div className="theme-toggle">
-        <button
-          onClick={toggleTheme}
-          className="theme-button"
-        >
-          {isDarkMode ? t('lightMode') : t('darkMode')}
-          <span className="theme-icon">{isDarkMode ? '☀️' : '🌙'}</span>
-        </button>
-      </div>
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          {t('counter', { count })}
-        </button>
-        <p>
-          {t('editText')}
-        </p>
-      </div>
-      <div className="card">
-        <button class="move" onClick={() => navigate('/game')}>game</button>
-        <button class="move" onClick={() => navigate('/dash')}>dash</button>
-        <button class="move" onClick={() => navigate('/how')}>how</button>
-      </div>
-      <p className="read-the-docs">
-        {t('readDocs')}
-      </p>
-    </>
+    </div>
   )
 }

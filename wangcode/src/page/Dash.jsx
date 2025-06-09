@@ -1,51 +1,98 @@
 import React from 'react';
 import '../styles/Dash.css';
 
-const Dash = () => {
+export default function Dash() {
+  const navItems = [
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M9 22V12H15V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Home"
+    },
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 6L13.5 15.5L8.5 10.5L1 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M17 6H23V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Trending"
+    },
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 21V19C19 17.9391 18.5786 16.9217 17.8284 16.1716C17.0783 15.4214 16.0609 15 15 15H9C7.93913 15 6.92172 15.4214 6.17157 16.1716C5.42143 16.9217 5 17.9391 5 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Subscriptions"
+    },
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 19.5V4.5C4 3.67157 4.67157 3 5.5 3H18.5C19.3284 3 20 3.67157 20 4.5V19.5C20 20.3284 19.3284 21 18.5 21H5.5C4.67157 21 4 20.3284 4 19.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M4 16H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Library"
+    },
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 8V12L15 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M3.05 11C3.27151 9.85888 3.87923 8.83023 4.78997 8.06698C5.70071 7.30373 6.86177 6.85067 8.07 6.78C9.68044 6.66322 11.2883 6.96655 12.738 7.66C14.1878 8.35345 15.4167 9.41174 16.29 10.73C17.1633 12.0483 17.6444 13.5683 17.68 15.13C17.7156 16.6917 17.3047 18.2333 16.5 19.58C15.6953 20.9267 14.5266 22.0217 13.15 22.73C11.7734 23.4383 10.2451 23.7293 8.72 23.57C7.19492 23.4107 5.73967 22.8062 4.53 21.82C3.32033 20.8338 2.40506 19.5056 1.89 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "History"
+    },
+    {
+      icon: (
+        <svg className="nav-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 10L19.5528 7.72361C19.8343 7.55115 20.1854 7.50189 20.5055 7.58899C20.8256 7.67609 21.0858 7.89115 21.2179 8.17954C21.35 8.46794 21.3402 8.79747 21.191 9.07705L17.809 15.9229C17.6598 16.2025 17.3996 16.4176 17.0795 16.5047C16.7594 16.5918 16.4083 16.5425 16.1268 16.3701L12 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 18.5H5C4.46957 18.5 3.96086 18.2893 3.58579 17.9142C3.21071 17.5391 3 17.0304 3 16.5V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+      text: "Your videos"
+    }
+  ];
+
   const subscriptions = [
     {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/294a9fd6-d44f-42da-aea5-a4c4b2ebe206.png",
-      title: "CNN",
-      info: "News • 1 hour ago • 1.3M views"
+      avatar: "https://i.pravatar.cc/150?img=1",
+      title: "Gaming Channel",
+      info: "1.2M subscribers"
     },
     {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/71c71a37-b5ee-4b0d-903f-be758844cf2b.png",
-      title: "Tech Insider",
-      info: "Tech • 2 hours ago • 1.5M views"
+      avatar: "https://i.pravatar.cc/150?img=2",
+      title: "Game Reviews",
+      info: "500K subscribers"
     },
     {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/d17eb44b-8a37-42f7-8be3-cfc51662f51e.png",
-      title: "Casey Neistat",
-      info: "Vlog • 3 hours ago • 1.1M views"
-    },
-    {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/3a89b827-f53a-4e86-b99f-c4bd16bc6171.png",
-      title: "Billie Eilish",
-      info: "Music • 4 hours ago • 1.7M views"
-    },
-    {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/6ab3c4dd-5202-43b0-912e-51204ebb973a.png",
-      title: "PewDiePie",
-      info: "Comedy • 5 hours ago • 1.2M views"
+      avatar: "https://i.pravatar.cc/150?img=3",
+      title: "Game Tips",
+      info: "300K subscribers"
     }
   ];
 
   const comments = [
     {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/c42d874e-4790-484e-afbf-1b61e82b34eb.png",
-      author: "Alex",
+      avatar: "https://i.pravatar.cc/150?img=4",
+      author: "John Doe",
       time: "2 hours ago",
-      text: "I love this game, and I'm so excited to see what you guys do with it! I'm also curious to see how it will compare to other games I've played in the past. I'm looking forward to seeing more gameplay, and I hope you'll be able to share some of the design process as well. Keep up the great work!",
-      likes: "1.2K",
-      dislikes: "12"
+      text: "This game is amazing! I've been playing it for hours.",
+      likes: 120,
+      dislikes: 5
     },
     {
-      avatar: "https://cdn.usegalileo.ai/sdxl10/41dd44b0-e4a7-461e-80f3-704005be021e.png",
-      author: "Anna",
-      time: "4 hours ago",
-      text: "This is a really cool concept for a game, and I'm looking forward to seeing how it develops. I'm especially interested in the social aspects, and how they will impact the gameplay. I think it has a lot of potential, and I'm excited to see how it will turn out.",
-      likes: "856",
-      dislikes: "5"
+      avatar: "https://i.pravatar.cc/150?img=5",
+      author: "Jane Smith",
+      time: "3 hours ago",
+      text: "The graphics are stunning and the gameplay is smooth.",
+      likes: 85,
+      dislikes: 2
     }
   ];
 
@@ -56,149 +103,76 @@ const Dash = () => {
           <div className="sidebar-container">
             <div className="sidebar">
               <div className="nav-section">
-                <div className="nav-items">
-                  {navItems.map((item, index) => (
-                    <div key={index} className={`nav-item ${item.active ? 'active' : ''}`}>
-                      <div className="nav-icon">{item.icon}</div>
-                      <p className="nav-text">{item.text}</p>
-                    </div>
-                  ))}
-                </div>
+                {navItems.map((item, index) => (
+                  <div key={index} className="nav-item">
+                    {item.icon}
+                    <span className="nav-text">{item.text}</span>
+                  </div>
+                ))}
               </div>
-              <button className="primary-button">
-                <span className="truncate">New video</span>
-              </button>
+              <div className="subscriptions-section">
+                <h3 className="section-title">Subscriptions</h3>
+                {subscriptions.map((sub, index) => (
+                  <div key={index} className="subscription-item">
+                    <img src={sub.avatar} alt={sub.title} className="subscription-avatar" />
+                    <div className="subscription-info">
+                      <span className="subscription-title">{sub.title}</span>
+                      <span className="subscription-subscribers">{sub.info}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="subscriptions-section">
-              <h3 className="section-title">Subscriptions</h3>
-              {subscriptions.map((sub, index) => (
-                <div key={index} className="subscription-card">
-                  <div
-                    className="subscription-avatar"
-                    style={{ backgroundImage: `url("${sub.avatar}")` }}
-                  ></div>
-                  <div className="subscription-info">
-                    <p className="subscription-title">{sub.title}</p>
-                    <p className="subscription-info-text">{sub.info}</p>
+          </div>
+          <div className="content-section">
+            <div className="video-container">
+              <div className="video-thumbnail">
+                <img src="https://picsum.photos/800/450" alt="Video thumbnail" />
+                <button className="play-button">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 3L19 12L5 21V3Z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+              <h2 className="video-title">King Game - Official Gameplay Trailer</h2>
+              <div className="video-info">
+                <span className="video-views">1.2M views</span>
+                <span className="video-date">2 days ago</span>
+              </div>
+            </div>
+            <div className="comments-section">
+              <h3 className="section-title">Comments ({comments.length})</h3>
+              {comments.map((comment, index) => (
+                <div key={index} className="comment">
+                  <img src={comment.avatar} alt={comment.author} className="comment-avatar" />
+                  <div className="comment-content">
+                    <div className="comment-header">
+                      <span className="comment-author">{comment.author}</span>
+                      <span className="comment-time">{comment.time}</span>
+                    </div>
+                    <p className="comment-text">{comment.text}</p>
+                    <div className="comment-actions">
+                      <button className="action-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 10L12 15L17 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span>{comment.likes}</span>
+                      </button>
+                      <button className="action-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 14L12 9L7 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span>{comment.dislikes}</span>
+                      </button>
+                      <button className="action-button">Reply</button>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="content-section">
-            <div className="header-section">
-              <p className="hashtag-title">#kinggame</p>
-              <button className="secondary-button">
-                <span className="truncate">Follow</span>
-              </button>
-            </div>
-            <div
-              className="video-container"
-              style={{ backgroundImage: 'url("https://cdn.usegalileo.ai/sdxl10/908062a1-972d-49b6-8a8e-cabee2f1456e.png")' }}
-            >
-              <button className="play-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                  <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
-                </svg>
-              </button>
-            </div>
-            <h1 className="video-title">King Game</h1>
-            <p className="video-description">
-              Welcome to the King Game! We're a group of content creators who make videos, play games, and have fun together.
-            </p>
-            <div className="comment-section">
-              <p className="comment-count">All 1,023 comments</p>
-            </div>
-            {comments.map((comment, index) => (
-              <div key={index} className="comment">
-                <div
-                  className="comment-avatar"
-                  style={{ backgroundImage: `url("${comment.avatar}")` }}
-                ></div>
-                <div className="comment-content">
-                  <div className="comment-header">
-                    <p className="comment-author">{comment.author}</p>
-                    <p className="comment-time">{comment.time}</p>
-                  </div>
-                  <p className="comment-text">{comment.text}</p>
-                  <div className="comment-actions">
-                    <div className="action-button">
-                      <div className="action-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                          <path d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"></path>
-                        </svg>
-                      </div>
-                      <p className="action-count">{comment.likes}</p>
-                    </div>
-                    <div className="action-button">
-                      <div className="action-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                          <path d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"></path>
-                        </svg>
-                      </div>
-                      <p className="action-count">{comment.dislikes}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
   );
-};
-
-const navItems = [
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"></path>
-      </svg>
-    ),
-    text: "Home",
-    active: true
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M183.89,153.34a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68ZM216,144a88,88,0,0,1-176,0c0-27.92,11-56.47,32.66-84.85a8,8,0,0,1,11.93-.89l24.12,23.41,22-60.41a8,8,0,0,1,12.63-3.41C165.21,36,216,84.55,216,144Zm-16,0c0-46.09-35.79-85.92-58.21-106.33L119.52,98.74a8,8,0,0,1-13.09,3L80.06,76.16C64.09,99.21,56,122,56,144a72,72,0,0,0,144,0Z"></path>
-      </svg>
-    ),
-    text: "Trending"
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm36.44-94.66-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17Z"></path>
-      </svg>
-    ),
-    text: "Subscriptions"
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M216,72H131.31L104,44.69A15.86,15.86,0,0,0,92.69,40H40A16,16,0,0,0,24,56V200.62A15.4,15.4,0,0,0,39.38,216H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72ZM40,56H92.69l16,16H40ZM216,200H40V88H216Z"></path>
-      </svg>
-    ),
-    text: "Library"
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
-      </svg>
-    ),
-    text: "History"
-  },
-  {
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-        <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,88h80v80H40Zm96-16V56h32V72Zm-16,0H88V56h32Zm0,112v16H88V184Zm16,0h32v16H136Zm0-16V88h80v80Zm80-96H184V56h32ZM72,56V72H40V56ZM40,184H72v16H40Zm176,16H184V184h32v16Z"></path>
-      </svg>
-    ),
-    text: "Your videos"
-  }
-];
-
-export default Dash; 
+} 

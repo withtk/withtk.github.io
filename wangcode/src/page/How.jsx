@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/How.css';
 
-const How = () => {
+export default function How() {
   const steps = [
     {
       number: "1",
@@ -28,22 +28,24 @@ const How = () => {
   return (
     <div className="design-root">
       <div className="layout-container">
-        <div className="header">
+        <header className="header">
           <h1 className="header-title">How to Play King Game</h1>
           <nav className="nav-links">
             <a href="/" className="nav-link">Home</a>
             <a href="/how" className="nav-link active">How to Play</a>
             <a href="/dash" className="nav-link">Dashboard</a>
           </nav>
-        </div>
-        <div className="content-container">
-          <div className="page-title">Get Started with King Game</div>
-          <p className="page-description">
-            Learn how to play King Game and become the ultimate ruler! Follow these simple steps to get started.
-          </p>
-          <button className="primary-button">
-            <span className="truncate">Play Now</span>
-          </button>
+        </header>
+        <main className="content-container">
+          <div className="content-wrapper">
+            <h2 className="page-title">Get Started with King Game</h2>
+            <p className="page-description">
+              Learn how to play King Game and become the ultimate ruler! Follow these simple steps to get started.
+            </p>
+            <button className="primary-button">
+              <span>Play Now</span>
+            </button>
+          </div>
           <div className="steps-container">
             {steps.map((step, index) => (
               <div key={index} className="step">
@@ -52,19 +54,11 @@ const How = () => {
                   <h3 className="step-title">{step.title}</h3>
                   <p className="step-description">{step.description}</p>
                 </div>
-                {index < steps.length - 1 && (
-                  <div className="step-connector">
-                    <div className="step-line"></div>
-                    <div className="step-dot"></div>
-                  </div>
-                )}
               </div>
             ))}
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
-};
-
-export default How; 
+} 
