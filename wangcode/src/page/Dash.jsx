@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Dash.css';
+import '@/styles/Dash.css';
 
 export default function Dash() {
   const navItems = [

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { useTheme } from './context/ThemeContext'
-import reactLogo from './assets/react.svg'
+import { useTheme } from '@/context/ThemeContext'
+import reactLogo from '@/assets/react.svg'
 import viteLogo from '/vite.svg'
-import './styles/Home.css'
+import '@/styles/Home.css'
 
 
 export default function Home() {

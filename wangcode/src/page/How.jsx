@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/How.css'
+import '@/styles/How.css'
 
 export default function How() {
   return (
