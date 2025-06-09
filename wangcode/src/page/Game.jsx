@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/GameHome.css'
 
-export default function GameHome() {
+export default function Game() {
   const features = [
     {
       icon: (
