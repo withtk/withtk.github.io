@@ -13,15 +13,14 @@
 
       body {
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          /*background: #071e54;*/
           background: linear-gradient(353deg,rgba(7, 30, 84, 1) 0%, rgba(9, 9, 121, 1) 30%, rgba(0, 145, 255, 1) 100%);
-          /*background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);*/
           min-height: 100vh;
+          color: #333;
+          overflow-x: hidden;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          color: #333;
-          overflow: hidden;
       }
 
       .container {
@@ -34,6 +33,7 @@
           border: 1px solid rgba(255, 255, 255, 0.2);
           max-width: 500px;
           width: 90%;
+          margin: 0 auto;
           animation: fadeInUp 0.8s ease-out, containerGlow 4s ease-in-out infinite alternate;
       }
 
@@ -390,11 +390,13 @@
       }
 
       .stars {
-          position: absolute;
-          width: 100%;
-          height: 100%;
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
           pointer-events: none;
           z-index: -1;
+          left: 0;
+          top: 0;
       }
 
       .star {
@@ -462,6 +464,64 @@
           height: 4px;
           background: #ddd;
           border-radius: 50%;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 2rem 0.5rem;
+          max-width: 98vw;
+          border-radius: 15px;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1rem;
+        }
+        p, .error-details, .btn {
+          font-size: 0.95rem;
+        }
+        .cat {
+          width: 90px;
+          height: 90px;
+        }
+        .cat-head {
+          width: 55px;
+          height: 50px;
+          left: 17px;
+        }
+        .cat-body {
+          width: 55px;
+          height: 40px;
+          left: 15px;
+          top: 30px;
+        }
+        .cat-tail {
+          width: 25px;
+          height: 6px;
+          top: 35px;
+          right: -8px;
+        }
+        .tail-tag {
+          font-size: 7px;
+          padding: 2px 4px;
+          right: -7px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .container {
+          padding: 1rem 0.2rem;
+        }
+        h1 {
+          font-size: 1.3rem;
+        }
+        h2 {
+          font-size: 0.9rem;
+        }
+        p, .error-details, .btn {
+          font-size: 0.8rem;
+        }
       }
   </style>
 </head>
