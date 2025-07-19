@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 코드 변환기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-section h2::before {
+            content: "📝";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .file-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .file-input-label {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .file-input-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+
+        .convert-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .convert-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .convert-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .keys-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .keys-section h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .keys-section h2::before {
+            content: "🔑";
+            margin-right: 10px;
+        }
+
+        .case-converters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .case-item {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .case-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .case-item h4 {
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .case-output {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            line-height: 1.3;
+            color: #4a5568;
+            min-height: 50px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .keys-output {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .keys-output h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .keys-content {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            color: #4a5568;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .output-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .output-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e1e5e9;
+            overflow: hidden;
+        }
+
+        .output-header {
+            background: linear-gradient(135deg, #54a0ff 0%, #2e86ab 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-content {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        pre {
+            margin: 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .error {
+            background: #fff5f5;
+            border: 2px solid #feb2b2;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .success {
+            background: #f0fff4;
+            border: 2px solid #9ae6b4;
+            color: #276749;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .case-copy-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px 0;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        #screamingSnakeCaseBtn {
+            font-size: 0.7em !important;
+        }
+        .case-copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        .output-copy-btn {
+            background: linear-gradient(135deg, #54a0ff 0%, #2e86ab 100%);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        .output-copy-btn:hover {
+            background: linear-gradient(135deg, #2e86ab 0%, #54a0ff 100%);
+            box-shadow: 0 6px 16px rgba(84, 160, 255, 0.18);
+        }
+
+        .output-edit-field {
+            width: 100%;
+            min-height: 180px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 13px;
+            border-radius: 10px;
+            border: 1.5px solid #e1e5e9;
+            padding: 12px;
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .output-section {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🔄 JSON 코드 변환기</h1>
+        <p>JSON을 JavaScript 객체와 Java DTO로 변환하세요</p>
+    </div>
+
+    <div class="main-content">
+        <div class="keys-section">
+            <h2>properties string 변환</h2>
+
+            <div class="keys-output">
+                <h4>🔑 변환할 목록
+                    <button class="output-copy-btn" type="button" onclick="copyCaseOutput('keysOutputField')">복사</button>
+                    <button class="output-copy-btn" type="button" onclick="updateKeysAndCases()">변환</button>
+                </h4>
+                <textarea class="keys-content" id="keysOutputField" style="max-height:150px; min-height:60px;"></textarea>
+            </div>
+
+            <div class="case-converters">
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('camelCaseOutput')">🐪 camelCase</button>
+                    <textarea class="case-output" id="camelCaseOutput">변환 결과...</textarea>
+                </div>
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('snakeCaseOutput')">🐍 snake_case</button>
+                    <textarea class="case-output" id="snakeCaseOutput">변환 결과...</textarea>
+                </div>
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('screamingSnakeCaseOutput')" id="screamingSnakeCaseBtn">🔥 SCREAMING_SNAKE_CASE</button>
+                    <textarea class="case-output" id="screamingSnakeCaseOutput">변환 결과...</textarea>
+                </div>
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('pascalCaseOutput')">🏛️ PascalCase</button>
+                    <textarea class="case-output" id="pascalCaseOutput">변환 결과...</textarea>
+                </div>
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('kebabCaseOutput')">🔗 kebab-case</button>
+                    <textarea class="case-output" id="kebabCaseOutput">변환 결과...</textarea>
+                </div>
+                <div class="case-item">
+                    <button type="button" class="case-copy-btn" onclick="copyCaseOutput('lowercaseOutput')">📝 lowercase</button>
+                    <textarea class="case-output" id="lowercaseOutput">변환 결과...</textarea>
+                </div>
+            </div>
+            <div class="suffix-tools" style="margin-top:10px; justify-content:flex-end;">
+                <input type="text" class="suffix-input" id="globalSuffix" placeholder="surfix" style="width:60px; font-size:11px; padding:2px 4px; margin-right:2px;">
+                <button type="button" class="suffix-btn" onclick="addSuffixToAll()">삽입</button>
+                <button type="button" class="suffix-btn" onclick="redoSuffixAll()">되돌리기</button>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h2>JSON 입력</h2>
+            <div class="file-input-wrapper">
+                <input type="file" id="jsonFile" class="file-input" accept=".json">
+                <label for="jsonFile" class="file-input-label">📁 JSON 파일 선택</label>
+            </div>
+            <div class="textarea-wrapper">
+                    <textarea id="jsonInput" placeholder='JSON 데이터를 입력하거나 파일을 선택하세요...
+
+예시:
+{
+  "user_name": "홍길동",
+  "USER_AGE": 30,
+  "emailAddress": "hong@example.com",
+  "home_address": {
+    "city_name": "서울",
+    "zip_code": "12345"
+  },
+  "user_hobbies": ["독서", "영화감상"]
+}'></textarea>
+            </div>
+        </div>
+
+        <div class="convert-section">
+            <button class="convert-btn" onclick="convertCode()">✨ 변환하기</button>
+        </div>
+
+        <div class="output-section">
+            <div class="output-box">
+                <div class="output-header">
+                    <span>📦 JavaScript 객체</span>
+                    <button class="output-copy-btn" type="button" onclick="copyCaseOutput('jsOutputField')">복사</button>
+                </div>
+                <div class="output-content">
+                    <textarea class="output-edit-field" id="jsOutputField" style="width:100%; min-height:180px; font-family:'Monaco','Menlo','Ubuntu Mono',monospace; font-size:13px; border-radius:10px; border:1.5px solid #e1e5e9; padding:12px; background:#f8f9fa;"></textarea>
+                </div>
+            </div>
+
+            <div class="output-box">
+                <div class="output-header">
+                    <span>☕ Java DTO</span>
+                    <button class="output-copy-btn" type="button" onclick="copyCaseOutput('javaOutputField')">복사</button>
+                </div>
+                <div class="output-content">
+                    <textarea class="output-edit-field" id="javaOutputField" style="width:100%; min-height:180px; font-family:'Monaco','Menlo','Ubuntu Mono',monospace; font-size:13px; border-radius:10px; border:1.5px solid #e1e5e9; padding:12px; background:#f8f9fa;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 파일 입력 처리
+    document.getElementById('jsonFile').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('jsonInput').value = e.target.result;
+                updateKeysAndCases();
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    // JSON 입력 변경 시 실시간 업데이트 (debounce 적용)
+    let debounceTimer;
+    document.getElementById('jsonInput').addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateKeysAndCases, 300);
+    });
+
+    // Keys와 Case 변환 업데이트
+    function updateKeysAndCases() {
+        const jsonInput = document.getElementById('jsonInput').value.trim();
+        const keysField = document.getElementById('keysOutputField');
+
+        if (!jsonInput) {
+            // keysOutputField의 값을 파싱하여 케이스 변환
+            // 배열 형태(["user_name", "USER_AGE", ...])도 지원
+            const keysRaw = keysField.value.trim();
+            let keys = [];
+            if (!keysRaw) {
+                clearCaseOutputs();
+                // 함수 동작 요약 로그
+                console.log('[updateKeysAndCases] 입력값 없음: 변환 결과 초기화');
+                return;
+            }
+            try {
+                // JSON 배열 형태
+                if ((keysRaw.startsWith('[') && keysRaw.endsWith(']')) || (keysRaw.startsWith("[") && keysRaw.endsWith("]"))) {
+                    keys = JSON.parse(keysRaw);
+                } else {
+                    // 쉼표, 줄바꿈, 띄어쓰기 등으로 구분
+                    keys = keysRaw.split(/,|\n|\r|\s+/).map(k => k.trim()).filter(k => k);
+                }
+            } catch (e) {
+                // fallback: 쉼표, 줄바꿈, 띄어쓰기 등으로 구분
+                keys = keysRaw.split(/,|\n|\r|\s+/).map(k => k.trim()).filter(k => k);
+            }
+            updateCaseConversions(keys);
+            // 함수 동작 요약 및 결과 로그
+            console.log('[updateKeysAndCases] keysOutputField 값 기준 변환:', keys);
+            return;
+        }
+
+        try {
+            const jsonObj = JSON.parse(jsonInput);
+            const allKeys = getAllKeys(jsonObj);
+
+            // Object.keys() 결과 표시
+            // 각 케이스로 변환
+            updateCaseConversions(allKeys);
+            // 함수 동작 요약 및 결과 로그
+            console.log('[updateKeysAndCases] jsonInput 기준 변환:', allKeys);
+        } catch (error) {
+            // JSON 파싱 오류가 발생해도 키 출력은 초기화
+            clearCaseOutputs();
+            // 함수 동작 요약 및 에러 로그
+            console.log('[updateKeysAndCases] JSON 파싱 오류:', error);
+        }
+    }
+
+    // 모든 키 추출 (중첩 객체 포함)
+    function getAllKeys(obj, keys = new Set()) {
+        if (typeof obj !== 'object' || obj === null) {
+            return Array.from(keys);
+        }
+
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                keys.add(key);
+
+                if (typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+                    getAllKeys(obj[key], keys);
+                }
+            }
+        }
+
+        return Array.from(keys);
+    }
+
+    // 케이스 변환 업데이트
+    function updateCaseConversions(keys) {
+        try {
+            document.getElementById('camelCaseOutput').value = keys.map(toCamelCase).join('\n') || '변환 결과...';
+            document.getElementById('snakeCaseOutput').value = keys.map(toSnakeCase).join('\n') || '변환 결과...';
+            document.getElementById('screamingSnakeCaseOutput').value = keys.map(toScreamingSnakeCase).join('\n') || '변환 결과...';
+            document.getElementById('pascalCaseOutput').value = keys.map(toPascalCase).join('\n') || '변환 결과...';
+            document.getElementById('kebabCaseOutput').value = keys.map(toKebabCase).join('\n') || '변환 결과...';
+            document.getElementById('lowercaseOutput').value = keys.map(str => str.toLowerCase()).join('\n') || '변환 결과...';
+        } catch (error) {
+            console.error('케이스 변환 오류:', error);
+            clearCaseOutputs();
+        }
+    }
+
+    // 케이스 출력 초기화
+    function clearCaseOutputs() {
+        const outputs = ['camelCaseOutput', 'snakeCaseOutput', 'screamingSnakeCaseOutput',
+            'pascalCaseOutput', 'kebabCaseOutput', 'lowercaseOutput'];
+        outputs.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.value = '변환 결과...';
+            }
+        });
+    }
+
+    // 케이스 복사 함수
+    async function copyCaseOutput(elementId) {
+        const element = document.getElementById(elementId);
+        const text = element.value;
+        // 함수 동작 요약 로그
+        console.log(`[copyCaseOutput] ${elementId}의 값을 클립보드에 복사합니다.`, { value: text });
+        try {
+            await navigator.clipboard.writeText(text);
+            showCaseCopySuccess(elementId);
+            // 복사 성공 로그
+            console.log(`[copyCaseOutput] 복사 성공:`, text);
+        } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showCaseCopySuccess(elementId);
+            // 복사 성공 로그 (fallback)
+            console.log(`[copyCaseOutput] 복사 성공(fallback):`, text);
+        }
+    }
+
+    // 복사 성공 메시지 (버튼에 표시)
+    function showCaseCopySuccess(elementId) {
+        const button = document.querySelector(`#${elementId}`).parentElement.querySelector('.case-copy-btn');
+        const originalText = button.textContent;
+        button.textContent = '복사됨!';
+        button.style.background = 'rgba(76, 175, 80, 0.3)';
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = '';
+        }, 2000);
+    }
+
+    // 케이스 변환 함수들
+    function toCamelCase(str) {
+        if (!str) return '';
+        return str
+          .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
+              return index === 0 ? word.toLowerCase() : word.toUpperCase();
+          })
+          .replace(/[\s_-]+/g, '');
+    }
+
+    function toSnakeCase(str) {
+        if (!str) return '';
+        return str
+          .replace(/([A-Z])/g, '_$1')
+          .replace(/[\s-]+/g, '_')
+          .replace(/^_/, '')
+          .toLowerCase();
+    }
+
+    function toScreamingSnakeCase(str) {
+        return toSnakeCase(str).toUpperCase();
+    }
+
+    function toPascalCase(str) {
+        if (!str) return '';
+        return str
+          .replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase())
+          .replace(/[\s_-]+/g, '');
+    }
+
+    function toKebabCase(str) {
+        if (!str) return '';
+        return str
+          .replace(/([A-Z])/g, '-$1')
+          .replace(/[\s_]+/g, '-')
+          .replace(/^-/, '')
+          .toLowerCase();
+    }
+
+    // 메인 변환 함수
+    function convertCode() {
+        const jsonInput = document.getElementById('jsonInput').value.trim();
+
+        if (!jsonInput) {
+            showError('JSON 데이터를 입력해주세요.');
+            return;
+        }
+
+        try {
+            const jsonObj = JSON.parse(jsonInput);
+
+            // JavaScript 객체 변환
+            const jsCode = generateJavaScriptObject(jsonObj);
+            document.getElementById('jsOutputField').value = jsCode;
+
+            // Java DTO 변환
+            const javaCode = generateJavaDTO(jsonObj, 'DataDto');
+            document.getElementById('javaOutputField').value = javaCode;
+
+            clearError();
+        } catch (error) {
+            showError('유효하지 않은 JSON 형식입니다: ' + error.message);
+        }
+    }
+
+    // JavaScript 객체 생성
+    function generateJavaScriptObject(obj) {
+        return `// JavaScript 객체
+const data = ${JSON.stringify(obj, null, 2)};
+
+// 사용 예시:
+console.log(data);
+
+// 객체 접근 예시:
+${generateAccessExamples(obj, 'data')}`;
+    }
+
+    // 접근 예시 생성
+    function generateAccessExamples(obj, prefix, examples = []) {
+        if (examples.length >= 5) return examples.join('\n');
+
+        for (const [key, value] of Object.entries(obj)) {
+            if (examples.length >= 5) break;
+
+            const accessor = `${prefix}.${key}`;
+            examples.push(`// ${accessor} = ${JSON.stringify(value)}`);
+
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                generateAccessExamples(value, accessor, examples);
+            }
+        }
+
+        return examples.join('\n');
+    }
+
+    // Java DTO 생성
+    function generateJavaDTO(obj, className = 'DataDto') {
+        const fields = [];
+        const methods = [];
+        const imports = new Set();
+
+        generateFieldsAndMethods(obj, fields, methods, imports);
+
+        let javaCode = '';
+
+        // Import statements
+        if (imports.size > 0) {
+            Array.from(imports).sort().forEach(imp => {
+                javaCode += `import ${imp};\n`;
+            });
+            javaCode += '\n';
+        }
+
+        // Class declaration
+        javaCode += `public class ${className} {\n\n`;
+
+        // Fields
+        fields.forEach(field => {
+            javaCode += `    ${field}\n`;
+        });
+
+        if (fields.length > 0) javaCode += '\n';
+
+        // Default constructor
+        javaCode += `    public ${className}() {\n    }\n\n`;
+
+        // Constructor with all fields
+        if (fields.length > 0) {
+            const constructorParams = fields.map(field => {
+                const parts = field.split(' ');
+                const type = parts[1];
+                const name = parts[2].replace(';', '');
+                return `${type} ${name}`;
+            }).join(', ');
+
+            javaCode += `    public ${className}(${constructorParams}) {\n`;
+            fields.forEach(field => {
+                const fieldName = field.split(' ')[2].replace(';', '');
+                javaCode += `        this.${fieldName} = ${fieldName};\n`;
+            });
+            javaCode += '    }\n\n';
+        }
+
+        // Getter and Setter methods
+        methods.forEach(method => {
+            javaCode += `    ${method}\n\n`;
+        });
+
+        javaCode += '}';
+
+        return javaCode;
+    }
+
+    // 필드와 메소드 생성
+    function generateFieldsAndMethods(obj, fields, methods, imports, prefix = '') {
+        for (const [key, value] of Object.entries(obj)) {
+            const fieldName = toCamelCase(key);
+            const javaType = getJavaType(value, imports);
+
+            fields.push(`private ${javaType} ${fieldName};`);
+
+            // Getter
+            const getterName = javaType === 'boolean' ? `is${capitalize(fieldName)}` : `get${capitalize(fieldName)}`;
+            methods.push(`public ${javaType} ${getterName}() {\n        return ${fieldName};\n    }`);
+
+            // Setter
+            methods.push(`public void set${capitalize(fieldName)}(${javaType} ${fieldName}) {\n        this.${fieldName} = ${fieldName};\n    }`);
+        }
+    }
+
+    // Java 타입 결정
+    function getJavaType(value, imports) {
+        if (value === null) return 'Object';
+
+        switch (typeof value) {
+            case 'string':
+                return 'String';
+            case 'number':
+                return Number.isInteger(value) ? 'Integer' : 'Double';
+            case 'boolean':
+                return 'Boolean';
+            case 'object':
+                if (Array.isArray(value)) {
+                    imports.add('java.util.List');
+                    if (value.length > 0) {
+                        const elementType = getJavaType(value[0], imports);
+                        return `List<${elementType}>`;
+                    }
+                    return 'List<Object>';
+                } else {
+                    // 중첩 객체의 경우 Map 사용
+                    imports.add('java.util.Map');
+                    return 'Map<String, Object>';
+                }
+            default:
+                return 'Object';
+        }
+    }
+
+    // 유틸리티 함수들 (기존 toCamelCase 함수 제거하고 위의 새로운 함수 사용)
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    // 클립보드 복사
+    async function copyToClipboard(elementId) {
+        const element = document.getElementById(elementId);
+        const text = element.textContent;
+
+        try {
+            await navigator.clipboard.writeText(text);
+            showSuccess(elementId);
+        } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showSuccess(elementId);
+        }
+    }
+
+    // 성공 메시지 표시
+    function showSuccess(elementId) {
+        const button = document.querySelector(`#${elementId}`).parentElement.querySelector('.copy-btn');
+        const originalText = button.textContent;
+        button.textContent = '복사됨!';
+        button.style.background = 'rgba(76, 175, 80, 0.3)';
+
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = 'rgba(255, 255, 255, 0.2)';
+        }, 2000);
+    }
+
+    // 에러 표시
+    function showError(message) {
+        clearError();
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error';
+        errorDiv.textContent = message;
+        document.querySelector('.input-section').appendChild(errorDiv);
+    }
+
+    // 에러 제거
+    function clearError() {
+        const existingError = document.querySelector('.error');
+        if (existingError) {
+            existingError.remove();
+        }
+    }
+
+    // 초기 예시 변환
+    window.onload = function() {
+        setTimeout(() => {
+            if (!document.getElementById('jsonInput').value.trim()) {
+                document.getElementById('jsonInput').value = `{
+  "user_name": "홍길동",
+  "USER_AGE": 30,
+  "emailAddress": "hong@example.com",
+  "home_address": {
+    "city_name": "서울",
+    "zip_code": "12345"
+  },
+  "user_hobbies": ["독서", "영화감상"],
+  "isActive": true
+}`;
+                updateKeysAndCases();
+                convertCode();
+            }
+        }, 500);
+    };
+
+    // suffix 일괄 삽입 및 되돌리기 기능 (모든 케이스 textarea에 적용)
+    const suffixHistory = {};
+    const caseTextareaIds = [
+        'camelCaseOutput',
+        'snakeCaseOutput',
+        'screamingSnakeCaseOutput',
+        'pascalCaseOutput',
+        'kebabCaseOutput',
+        'lowercaseOutput'
+    ];
+    function addSuffixToAll() {
+        const suffix = document.getElementById('globalSuffix').value;
+        caseTextareaIds.forEach(textareaId => {
+            const textarea = document.getElementById(textareaId);
+            if (!suffixHistory[textareaId]) {
+                suffixHistory[textareaId] = textarea.value;
+            }
+            const lines = textarea.value.split('\n');
+            textarea.value = lines.map(line => line ? line + suffix : line).join('\n');
+            console.log(`[addSuffixToAll] ${textareaId} 각 행 끝에 '${suffix}' 추가됨.`);
+        });
+    }
+    function redoSuffixAll() {
+        caseTextareaIds.forEach(textareaId => {
+            const textarea = document.getElementById(textareaId);
+            if (suffixHistory[textareaId]) {
+                textarea.value = suffixHistory[textareaId];
+                delete suffixHistory[textareaId];
+                console.log(`[redoSuffixAll] ${textareaId} 되돌리기 완료.`);
+            }
+        });
+    }
+
+    // suffix 관련 스타일
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .suffix-tools {
+            display: flex;
+            align-items: center;
+            margin-top: 4px;
+            gap: 2px;
+        }
+        .suffix-input {
+            border: 1px solid #e1e5e9;
+            border-radius: 4px;
+            height: 22px;
+        }
+        .suffix-btn {
+            background: #e1e5e9;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            font-size: 11px;
+            padding: 2px 8px;
+            margin-left: 1px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .suffix-btn:hover {
+            background: #bfc8d6;
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>
