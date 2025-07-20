@@ -84,7 +84,7 @@
             <h2 class="text-xl font-semibold mb-3 text-white">JavaScript Object</h2>
             <div class="output-box">
                 <button class="copy-btn" onclick="copyToClipboard('jsObjectOutput')">Copy</button>
-                <pre id="jsObjectOutput"></pre>
+                <textarea id="jsObjectOutput" class="w-full h-full bg-transparent border-none resize-none outline-none font-mono"></textarea>
             </div>
         </div>
 
@@ -93,7 +93,7 @@
             <h2 class="text-xl font-semibold mb-3 text-white">Java DTO</h2>
             <div class="output-box">
                 <button class="copy-btn" onclick="copyToClipboard('javaDtoOutput')">Copy</button>
-                <pre id="javaDtoOutput"></pre>
+                <textarea id="javaDtoOutput" class="w-full h-full bg-transparent border-none resize-none outline-none font-mono"></textarea>
             </div>
         </div>
     </div>
@@ -135,18 +135,18 @@
 
             // 1. JS 객체로 변환하여 출력
             const jsObjectOutput = document.getElementById('jsObjectOutput');
-            jsObjectOutput.textContent = JSON.stringify(jsonObject, null, 2);
+            jsObjectOutput.value = JSON.stringify(jsonObject, null, 2);
 
             // 2. Java DTO로 변환하여 출력
             const javaDtoOutput = document.getElementById('javaDtoOutput');
             const className = toClassName(baseName);
             const javaDtoClass = createJavaDTO(className, jsonObject);
-            javaDtoOutput.textContent = javaDtoClass;
+            javaDtoOutput.value = javaDtoClass;
 
         } catch (error) {
             alert('오류: 유효하지 않은 JSON 형식입니다.\n' + error);
-            document.getElementById('jsObjectOutput').textContent = '';
-            document.getElementById('javaDtoOutput').textContent = '';
+            document.getElementById('jsObjectOutput').value = '';
+            document.getElementById('javaDtoOutput').value = '';
         }
     }
 
@@ -250,8 +250,8 @@
      * @param {string} elementId - 복사할 내용이 담긴 요소의 ID
      */
     function copyToClipboard(elementId) {
-        const preElement = document.getElementById(elementId);
-        const text = preElement.textContent;
+        const element = document.getElementById(elementId);
+        const text = element.value;
         if (!text) return;
 
         const textArea = document.createElement("textarea");
