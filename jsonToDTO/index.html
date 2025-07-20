@@ -51,6 +51,7 @@
     <header class="text-center mb-8">
         <h1 class="text-4xl font-bold text-white">JSON 코드 변환기</h1>
         <p class="text-slate-400 mt-2">JSON 파일을 업로드하거나 직접 입력하여 변환합니다.</p>
+        <div id="errorMessage" class="hidden mt-4 mx-auto max-w-2xl bg-red-500 text-white px-4 py-3 rounded-lg text-sm font-medium"></div>
     </header>
 
     <div class="bg-slate-800 p-6 rounded-lg shadow-lg mb-8">
@@ -72,9 +73,14 @@
         <div>
             <label for="jsonInput" class="block mb-2 text-sm font-medium text-slate-400">2. JSON 직접 입력</label>
             <textarea id="jsonInput" rows="8" class="block p-2.5 w-full text-sm text-slate-300 bg-slate-700 rounded-lg border border-slate-600 focus:ring-violet-500 focus:border-violet-500" placeholder=" 여기에 JSON 코드를 붙여넣으세요..."></textarea>
-            <button id="convertBtn" class="mt-4 w-full bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
-                변환하기
-            </button>
+            <div class="flex gap-2 mt-4">
+                <button id="resetBtn" class="bg-slate-600 hover:bg-slate-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm">
+                    초기화
+                </button>
+                <button id="convertBtn" class="flex-1 bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                    변환하기
+                </button>
+            </div>
         </div>
     </div>
 
@@ -100,6 +106,34 @@
 </div>
 
 <script>
+    // 초기 샘플 JSON 정의
+    const initialJson = `{
+      "user_id": 12345,
+      "user_name": "홍길동",
+      "email": "gildong.hong@example.com",
+      "is_active": true,
+      "balance": 150.75,
+      "tags": [
+    "premium",
+    "developer",
+    "tester"
+      ],
+      "profile": {
+    "company": "Awesome Inc.",
+    "position": "Software Engineer"
+      },
+      "login_history": [
+    {
+      "timestamp": "2023-10-27T10:00:00Z",
+      "ip_address": "192.168.1.1"
+    },
+    {
+      "timestamp": "2023-10-26T15:30:00Z",
+      "ip_address": "192.168.1.2"
+    }
+      ]
+    }`;
+
     // 파일 입력 변경 감지 이벤트 리스너
     document.getElementById('jsonFile').addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -118,10 +152,22 @@
     document.getElementById('convertBtn').addEventListener('click', function() {
         const jsonString = document.getElementById('jsonInput').value;
         if (!jsonString.trim()) {
-            alert('입력된 JSON이 없습니다.');
+            showError('입력된 JSON이 없습니다.');
             return;
         }
         processJson(jsonString, 'MyDto'); // 기본 클래스 이름 사용
+    });
+
+    // 초기화 버튼 클릭 이벤트 리스너
+    document.getElementById('resetBtn').addEventListener('click', function() {
+        // 초기 샘플 JSON으로 설정
+        document.getElementById('jsonInput').value = initialJson;
+
+        // 변환 실행
+        processJson(initialJson, 'UserDto');
+
+        // 성공 메시지 표시
+        showError('초기 샘플 JSON으로 초기화되었습니다', false);
     });
 
     /**
@@ -143,8 +189,11 @@
             const javaDtoClass = createJavaDTO(className, jsonObject);
             javaDtoOutput.value = javaDtoClass;
 
+            // 성공 메시지 표시
+            showError('변환이 완료되었습니다', false);
+
         } catch (error) {
-            alert('오류: 유효하지 않은 JSON 형식입니다.\n' + error);
+            showError('오류: 유효하지 않은 JSON 형식입니다. ' + error.message);
             document.getElementById('jsObjectOutput').value = '';
             document.getElementById('javaDtoOutput').value = '';
         }
@@ -260,42 +309,45 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            alert('코드가 클립보드에 복사되었습니다.');
+            showError('코드가 클립보드에 복사되었습니다.', false);
         } catch (err) {
-            alert('복사에 실패했습니다.');
+            showError('복사에 실패했습니다.');
         }
         document.body.removeChild(textArea);
     }
 
+    /**
+     * 에러 메시지를 화면에 표시합니다
+     * @param {string} message - 표시할 메시지
+     * @param {boolean} isError - 에러 여부 (true면 빨간색, false면 녹색)
+     */
+    function showError(message, isError = true) {
+        const errorElement = document.getElementById('errorMessage');
+        errorElement.textContent = message;
+        errorElement.classList.remove('hidden');
+
+        if (isError) {
+            errorElement.classList.remove('bg-green-500');
+            errorElement.classList.add('bg-red-500');
+        } else {
+            errorElement.classList.remove('bg-red-500');
+            errorElement.classList.add('bg-green-500');
+        }
+
+        // 3초 후 자동으로 메시지 숨기기
+        setTimeout(hideError, 3000);
+    }
+
+    /**
+     * 에러 메시지를 숨깁니다
+     */
+    function hideError() {
+        const errorElement = document.getElementById('errorMessage');
+        errorElement.classList.add('hidden');
+    }
+
     // 페이지 로드 시 초기화 함수 실행
     document.addEventListener('DOMContentLoaded', function() {
-        const initialJson = `{
-  "user_id": 12345,
-  "user_name": "홍길동",
-  "email": "gildong.hong@example.com",
-  "is_active": true,
-  "balance": 150.75,
-  "tags": [
-    "premium",
-    "developer",
-    "tester"
-  ],
-  "profile": {
-    "company": "Awesome Inc.",
-    "position": "Software Engineer"
-  },
-  "login_history": [
-    {
-      "timestamp": "2023-10-27T10:00:00Z",
-      "ip_address": "192.168.1.1"
-    },
-    {
-      "timestamp": "2023-10-26T15:30:00Z",
-      "ip_address": "192.168.1.2"
-    }
-  ]
-}`;
-
         const jsonInput = document.getElementById('jsonInput');
         jsonInput.value = initialJson;
 
