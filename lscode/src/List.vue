@@ -11,6 +11,9 @@
 import { type Ref, ref } from 'vue'
 import page_list from '../node/page_list.json'  // 빌드시 동적 생성
 import { exceptionList, arrToEmphasize } from './util/constants.ts'
+import { version } from '@root/package.json'
+
+console.log('Project Version:', version)
 
 // const exceptionList = ['ls', 'lscode', 'blogcode', 'milkcode', 'moviecode']; // 제외할 디렉토리
 // console.log('--func--page_list: ', page_list);
