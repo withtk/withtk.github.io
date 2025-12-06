@@ -42,3 +42,21 @@ function mkJsonFile(arr) {
   // console.log("readData : ");
   // console.log(JSON.parse(readData.toString()));
 }
+
+// Version Bumping Logic
+const packageJsonPath = path.join(__dirname, '..', 'package.json');
+try {
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+  const versionParts = packageJson.version.split('.').map(Number);
+
+  // Patch version bump (0.1.2 -> 0.1.3)
+  versionParts[2] += 1;
+  const newVersion = versionParts.join('.');
+
+  packageJson.version = newVersion;
+
+  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n');
+  console.log(`Version bumped to ${newVersion}`);
+} catch (error) {
+  console.error('Error bumping version:', error);
+}
