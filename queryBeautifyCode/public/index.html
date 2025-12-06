@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Beautifier - Premium Query Formatter</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql-formatter/12.2.4/sql-formatter.min.js"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+            --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --bg-body: #f7fafc;
+            --accent-color: #667eea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .main-container {
+            flex: 1;
+            max-width: 1400px;
+            margin: 2rem auto;
+            width: 95%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .editor-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            border: var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: calc(100vh - 140px);
+            min-height: 600px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .editor-panel:hover {
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .panel-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(247, 250, 252, 0.8);
+        }
+
+        .panel-title {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-title::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        select {
+            appearance: none;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            transition: all 0.2s;
+        }
+
+        select:hover {
+            border-color: var(--accent-color);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 8px -1px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e0;
+        }
+
+        .editor-content {
+            flex: 1;
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            resize: none;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2d3748;
+            background: transparent;
+            outline: none;
+        }
+
+        textarea::placeholder {
+            color: #a0aec0;
+        }
+
+        .output-container {
+            width: 100%;
+            height: 100%;
+            padding: 1.5rem;
+            overflow: auto;
+            background: #f8fafc;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2d3748;
+            white-space: pre-wrap;
+        }
+
+        /* Syntax Highlighting Simulation */
+        .keyword {
+            color: #805ad5;
+            font-weight: 600;
+        }
+
+        .string {
+            color: #38a169;
+        }
+
+        .number {
+            color: #d69e2e;
+        }
+
+        .function {
+            color: #3182ce;
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .editor-panel {
+                height: 500px;
+                min-height: auto;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2d3748;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(150%);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">SQL Beautifier</div>
+        <div class="controls">
+            <!-- Additional header controls if needed -->
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Input Section -->
+        <div class="editor-panel">
+            <div class="panel-header">
+                <div class="panel-title">Input Query</div>
+                <div class="controls">
+                    <select id="dialectSelect">
+                        <option value="sql">Standard SQL</option>
+                        <option value="mysql">MySQL</option>
+                        <option value="postgresql">PostgreSQL</option>
+                        <option value="plsql">Oracle (PL/SQL)</option>
+                        <option value="tsql">SQL Server (T-SQL)</option>
+                        <option value="sqlite">SQLite</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="formatSQL()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Beautify
+                    </button>
+                </div>
+            </div>
+            <div class="editor-content">
+                <textarea id="inputSql" placeholder="Paste your messy SQL query here..." spellcheck="false"></textarea>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <div class="editor-panel">
+            <div class="panel-header">
+                <div class="panel-title">Formatted Result</div>
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="copyToClipboard()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
+                        Copy
+                    </button>
+                </div>
+            </div>
+            <div class="editor-content">
+                <div id="outputSql" class="output-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        // Simple syntax highlighting function
+        function highlightSQL(sql) {
+            if (!sql) return '';
+
+            // Basic keywords list
+            const keywords = /\b(SELECT|FROM|WHERE|AND|OR|ORDER BY|GROUP BY|HAVING|LIMIT|OFFSET|INSERT|INTO|VALUES|UPDATE|SET|DELETE|CREATE|TABLE|DROP|ALTER|INDEX|JOIN|LEFT|RIGHT|INNER|OUTER|ON|AS|CASE|WHEN|THEN|ELSE|END|IS|NULL|NOT|LIKE|IN|EXISTS|UNION|ALL|DISTINCT|TOP|DEFAULT|PRIMARY|KEY|FOREIGN|REFERENCES|CONSTRAINT|CHECK|UNIQUE|VIEW|PROCEDURE|TRIGGER|DECLARE|BEGIN|COMMIT|ROLLBACK)\b/gi;
+            const functions = /\b(COUNT|SUM|AVG|MIN|MAX|COALESCE|UPPER|LOWER|SUBSTRING|TRIM|ROUND|CAST|CONVERT|DATE|NOW)\b/gi;
+            const strings = /'[^']*'/g;
+            const numbers = /\b\d+(\.\d+)?\b/g;
+
+            let highlighted = sql
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            highlighted = highlighted
+                .replace(strings, '<span class="string">$&</span>')
+                .replace(keywords, '<span class="keyword">$&</span>')
+                .replace(functions, '<span class="function">$&</span>')
+                .replace(numbers, '<span class="number">$&</span>');
+
+            return highlighted;
+        }
+
+        function formatSQL() {
+            const input = document.getElementById('inputSql').value;
+            const dialect = document.getElementById('dialectSelect').value;
+            const outputContainer = document.getElementById('outputSql');
+
+            if (!input.trim()) {
+                outputContainer.innerHTML = '<span style="color: #a0aec0;">Result will appear here...</span>';
+                return;
+            }
+
+            try {
+                // Check if sqlFormatter is loaded
+                if (typeof sqlFormatter === 'undefined') {
+                    outputContainer.innerHTML = '<span style="color: #e53e3e;">Error: Library not loaded. Please check internet connection.</span>';
+                    return;
+                }
+
+                // Map our dialect values to what sql-formatter expects if needed
+                // The values in select match the library's expected language keys mostly
+                const formatted = sqlFormatter.format(input, {
+                    language: dialect,
+                    uppercase: true,
+                    linesBetweenQueries: 2
+                });
+
+                outputContainer.innerHTML = highlightSQL(formatted);
+
+                // Store raw formatted text for copying
+                outputContainer.dataset.raw = formatted;
+
+            } catch (e) {
+                console.error(e);
+                outputContainer.innerHTML = `<span style="color: #e53e3e;">Error formatting SQL: ${e.message}</span>`;
+            }
+        }
+
+        function copyToClipboard() {
+            const outputContainer = document.getElementById('outputSql');
+            const textToCopy = outputContainer.dataset.raw || outputContainer.innerText;
+
+            if (!textToCopy || textToCopy === 'Result will appear here...') return;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto-format on load if there's content (optional)
+        // Add event listener for Ctrl+Enter to format
+        document.getElementById('inputSql').addEventListener('keydown', function (e) {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                formatSQL();
+            }
+        });
+    </script>
+</body>
+
+</html>
