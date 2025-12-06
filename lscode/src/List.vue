@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { type Ref, ref } from 'vue'
-import page_list from '../node/page_list.json'
+import page_list from '../node/page_list.json'  // 빌드시 동적 생성
 import { exceptionList, arrToEmphasize } from './util/constants.ts'
 
 // const exceptionList = ['ls', 'lscode', 'blogcode', 'milkcode', 'moviecode']; // 제외할 디렉토리
