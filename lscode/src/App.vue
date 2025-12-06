@@ -1,16 +1,17 @@
 <template>
   <div class="container">
     <div>
-      <a href="https://vite.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
+<!--      <a href="https://vite.dev" target="_blank">-->
+<!--        <img src="/vite.svg" class="logo" alt="Vite logo" />-->
+<!--      </a>-->
+<!--      <a href="https://vuejs.org/" target="_blank">-->
+<!--        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />-->
+<!--      </a>-->
     </div>
     <h1>
       <a href="https://withtk.github.io/" class="home">with<span class="tk">tk</span></a> Page List
     </h1>
+    <div class="version">v{{ version }}</div>
     <List />
     <div style="flex: 1"></div>
   </div>
@@ -18,6 +19,7 @@
 
 <script setup lang="ts">
 import List from './List.vue'
+import { version } from '@root/package.json'
 </script>
 
 <style scoped>
@@ -28,6 +30,7 @@ import List from './List.vue'
   justify-content: space-between;
   padding: 2rem;
   background-image: linear-gradient(to top, #cee4f1 0%, #e2ebf0 100%);
+  position: relative;
 }
 
 a.home {
@@ -55,5 +58,14 @@ span.tk {
 
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.version {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #666;
+  opacity: 0.7;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
 }
 </style>
