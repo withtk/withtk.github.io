@@ -1,16 +1,260 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-    <title>intro</title>
-    <link href="css/style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=https://withtk.netlify.app">
+  <title>withtk | Developer</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #030712;
+      --fg: #f9fafb;
+      --muted: #9ca3af;
+      --accent: #6366f1;
+      --accent-glow: rgba(99, 102, 241, 0.2);
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --radius: 12px;
+      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 8rem;
+    }
+
+    /* Subtle Animated Background */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+      pointer-events: none;
+      animation: grid-move 20s linear infinite;
+    }
+
+    @keyframes grid-move {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      z-index: -1;
+      filter: blur(80px);
+      animation: glow-pulse 10s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+    }
+
+    /* Content Layout */
+    .container {
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fade-in 0.8s ease-out forwards;
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      background: #1e293b;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 0 20px var(--accent-glow);
+      position: relative;
+      z-index: 2;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes ping {
+      75%, 100% { transform: scale(1.3); opacity: 0; }
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.25rem;
+      color: var(--fg);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* Link Section */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .link-item {
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--fg);
+      transition: all 0.2s;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .link-item:hover {
+      color: var(--accent);
+      padding-left: 8px;
+    }
+
+    .link-label {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .link-arrow {
+      font-size: 0.9rem;
+      opacity: 0.5;
+    }
+
+    /* Animation Point: Interactive Code Block */
+    .terminal {
+      background: #000;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--card-border);
+      margin-top: 2rem;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .terminal:hover {
+      border-color: var(--accent);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+
+    .code {
+      line-height: 1.6;
+      white-space: pre;
+      font-family: inherit;
+    }
+
+    .code .keyword { color: #c678dd; }
+    .code .string { color: #98c379; }
+    .code .func { color: #61afef; }
+    .code .comment { color: #5c6370; font-style: italic; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.2em;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 1rem; }
+      .title { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<p>index.html</p>
 </body>
 </html>

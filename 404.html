@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 | Page Not Found</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #030712;
+      --fg: #f9fafb;
+      --muted: #9ca3af;
+      --accent: #ef4444; /* Error red */
+      --accent-glow: rgba(239, 68, 68, 0.15);
+      --card-border: rgba(255, 255, 255, 0.05);
+      --font: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(239, 68, 68, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239, 68, 68, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 1rem;
+      background: linear-gradient(to bottom, #fff, #4b5563);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.2;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .terminal {
+      background: #000;
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--card-border);
+      text-align: left;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .code {
+      line-height: 1.6;
+      white-space: pre;
+    }
+
+    .code .keyword { color: #ef4444; }
+    .code .string { color: #9ca3af; }
+    .code .comment { color: #4b5563; font-style: italic; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--fg);
+      color: var(--bg);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <div class="error-code">404</div>
+    <h1 class="title">낫파운드...</h1>
+
+    <div class="terminal">
+      <div class="code" id="code-content"></div>
+    </div>
+
+    <a href="/" class="btn">
+      <span>Return Home</span>
+      <span>→</span>
+    </a>
+  </div>
+
+  <script>
+    const codeContainer = document.getElementById('code-content');
+    const codeSnippet = [
+      { text: '// Error: Page not found', type: 'comment' },
+      { text: '\nif ', type: 'keyword' },
+      { text: '(page.exists === ', type: 'plain' },
+      { text: 'false', type: 'keyword' },
+      { text: ') {', type: 'plain' },
+      { text: '\n  throw ', type: 'keyword' },
+      { text: 'new ', type: 'plain' },
+      { text: 'Error', type: 'plain' },
+      { text: '(', type: 'plain' },
+      { text: "'404: Not Found'", type: 'string' },
+      { text: ');', type: 'plain' },
+      { text: '\n}', type: 'plain' },
+      { text: '\n// Please go back', type: 'comment' },
+      { text: '\n// 여긴 어디...?', type: 'comment' }
+    ];
+
+    let currentLine = 0;
+    let currentChar = 0;
+
+    function typeCode() {
+      if (currentLine < codeSnippet.length) {
+        const item = codeSnippet[currentLine];
+        const span = document.createElement('span');
+        span.className = item.type;
+        codeContainer.appendChild(span);
+
+        function typeChar() {
+          if (currentChar < item.text.length) {
+            span.textContent += item.text[currentChar];
+            currentChar++;
+            setTimeout(typeChar, 30);
+          } else {
+            currentChar = 0;
+            currentLine++;
+            setTimeout(typeCode, 100);
+          }
+        }
+        typeChar();
+      }
+    }
+
+    setTimeout(typeCode, 500);
+  </script>
+</body>
+</html>
