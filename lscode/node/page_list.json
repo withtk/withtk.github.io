@@ -1,1 +1,326 @@
-["JSON_yaml","JSON_변환기","JSON_정렬","agGrid","blog","blogcode","bootstrap","calculator","camelCase","ck2nd","csv","custom","editor","extension","handsontable","jquery","jqueryui","jsonToDTO","ls","lscode","memo","milk","milkcode","movie","moviecode","nginx","othelo","promise","queryBeautify","queryBeautifyCode","tailwind","toast-ui-editor","wang","wangcode","연봉계산기"]
+[
+  {
+    "name": "JSON_yaml",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "JSON to YAML converter",
+    "spec": [
+      "tool"
+    ]
+  },
+  {
+    "name": "JSON_변환기",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "JSON formatting and transformation tool",
+    "spec": [
+      "tool"
+    ]
+  },
+  {
+    "name": "JSON_정렬",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "Clean and sort JSON data",
+    "spec": [
+      "tool"
+    ]
+  },
+  {
+    "name": "agGrid",
+    "type": "REACT",
+    "tag": null,
+    "desc": "High-performance data grid display",
+    "spec": [
+      "reactJS",
+      "library"
+    ]
+  },
+  {
+    "name": "blog",
+    "type": "WEB_PAGE",
+    "tag": "highLight",
+    "desc": "Personal blog covering tech and life",
+    "spec": [
+      "frontEnd",
+      "content"
+    ]
+  },
+  {
+    "name": "blogcode",
+    "type": "SOURCE",
+    "tag": null,
+    "desc": "Source code for blog projects",
+    "spec": [
+      "source"
+    ]
+  },
+  {
+    "name": "bootstrap",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Styling experiments with Bootstrap",
+    "spec": [
+      "CSS",
+      "library"
+    ]
+  },
+  {
+    "name": "calculator",
+    "type": "WEB_PAGE",
+    "tag": null,
+    "desc": "Simple arithmetic calculator",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  },
+  {
+    "name": "camelCase",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "Naming convention converter",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  },
+  {
+    "name": "ck2nd",
+    "type": "ARCHIVE",
+    "tag": null,
+    "desc": "Legacy project storage",
+    "spec": []
+  },
+  {
+    "name": "csv",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "CSV parser and editor",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  },
+  {
+    "name": "custom",
+    "type": "EXPERIMENT",
+    "tag": null,
+    "desc": "Miscellaneous custom snippets",
+    "spec": []
+  },
+  {
+    "name": "editor",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "Web-based text editor instance",
+    "spec": [
+      "tool"
+    ]
+  },
+  {
+    "name": "extension",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "Browser extension prototypes",
+    "spec": [
+      "tool"
+    ]
+  },
+  {
+    "name": "handsontable",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Excel-like table for the web",
+    "spec": [
+      "library"
+    ]
+  },
+  {
+    "name": "jquery",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Classic jQuery experiments",
+    "spec": [
+      "library"
+    ]
+  },
+  {
+    "name": "jqueryui",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Interactive UI components via jQueryUI",
+    "spec": [
+      "library"
+    ]
+  },
+  {
+    "name": "jsonToDTO",
+    "type": "TOOL",
+    "tag": null,
+    "desc": "Generate DTO classes from JSON",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  },
+  {
+    "name": "ls",
+    "type": "WEB_PAGE",
+    "tag": null,
+    "desc": "Link storage and management",
+    "spec": [
+      "webPage"
+    ]
+  },
+  {
+    "name": "lscode",
+    "type": "VUE",
+    "tag": null,
+    "desc": "Source code for this listing app",
+    "spec": [
+      "vueJS",
+      "source"
+    ]
+  },
+  {
+    "name": "memo",
+    "type": "WEB_PAGE",
+    "tag": null,
+    "desc": "Smart memo app with history",
+    "spec": [
+      "JS",
+      "app"
+    ]
+  },
+  {
+    "name": "milk",
+    "type": "WEB_PAGE",
+    "tag": "highLight",
+    "desc": "Frontend showcase project Blue",
+    "spec": [
+      "frontEnd"
+    ]
+  },
+  {
+    "name": "milkcode",
+    "type": "SOURCE",
+    "tag": null,
+    "desc": "Source for milk project",
+    "spec": [
+      "source"
+    ]
+  },
+  {
+    "name": "movie",
+    "type": "WEB_PAGE",
+    "tag": "highLight",
+    "desc": "Movie discovery and listing dashboard",
+    "spec": [
+      "frontEnd"
+    ]
+  },
+  {
+    "name": "moviecode",
+    "type": "SOURCE",
+    "tag": null,
+    "desc": "Source for movie project",
+    "spec": [
+      "source"
+    ]
+  },
+  {
+    "name": "nginx",
+    "type": "DEVOPS",
+    "tag": null,
+    "desc": "Server configuration experiments",
+    "spec": [
+      "devOps"
+    ]
+  },
+  {
+    "name": "othelo",
+    "type": "WEB_PAGE",
+    "tag": null,
+    "desc": "Othello game logic with AI",
+    "spec": [
+      "JS",
+      "game"
+    ]
+  },
+  {
+    "name": "promise",
+    "type": "EXPERIMENT",
+    "tag": null,
+    "desc": "Async/Promise flow research",
+    "spec": [
+      "JS"
+    ]
+  },
+  {
+    "name": "queryBeautify",
+    "type": "WEB_PAGE",
+    "tag": "highLight",
+    "desc": "SQL/Query formatting tool",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  },
+  {
+    "name": "queryBeautifyCode",
+    "type": "SOURCE",
+    "tag": null,
+    "desc": "Source for query beautifier",
+    "spec": [
+      "source"
+    ]
+  },
+  {
+    "name": "tailwind",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Styling experiments with TailwindCSS",
+    "spec": [
+      "CSS",
+      "library"
+    ]
+  },
+  {
+    "name": "toast-ui-editor",
+    "type": "LIBRARY",
+    "tag": null,
+    "desc": "Rich text Editor integration",
+    "spec": [
+      "library"
+    ]
+  },
+  {
+    "name": "wang",
+    "type": "WEB_PAGE",
+    "tag": "highLight",
+    "desc": "Frontend showcase project Red",
+    "spec": [
+      "frontEnd"
+    ]
+  },
+  {
+    "name": "wangcode",
+    "type": "SOURCE",
+    "tag": null,
+    "desc": "Source for wang project",
+    "spec": [
+      "source"
+    ]
+  },
+  {
+    "name": "연봉계산기",
+    "type": "WEB_PAGE",
+    "tag": null,
+    "desc": "Salary and tax calculator",
+    "spec": [
+      "JS",
+      "tool"
+    ]
+  }
+]

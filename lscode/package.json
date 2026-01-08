@@ -1,11 +1,11 @@
 {
   "name": "ls",
   "private": true,
-  "version": "0.1.5",
+  "version": "0.2.3",
   "type": "module",
   "scripts": {
     "dev": "node ./node/pg_generator.js && vite",
-    "build": "node ./node/pg_generator.js && vue-tsc -b && vite build && node ./node/move_build_files.js",
+    "build": "node ./node/pg_generator.js && vite build && node ./node/move_build_files.js",
     "preview": "vite preview"
   },
   "dependencies": {
