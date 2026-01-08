@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=https://withtk.netlify.app">
   <title>withtk | Developer</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -255,108 +256,5 @@
   </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
-
-  <div class="container">
-    <header>
-      <div class="avatar-wrapper">
-        <img src="/character_cat.png" class="avatar" alt="profile">
-        <div class="avatar-ring"></div>
-      </div>
-      <h1 class="title">withtk</h1>
-      <p class="subtitle">Software Engineer & Tech Creator</p>
-    </header>
-
-    <div class="links">
-      <a href="https://github.com/withtk" class="link-item" target="_blank">
-        <span class="link-label">GitHub</span>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="/ls" class="link-item">
-        <span class="link-label">Portfolio</span>
-        <span class="link-arrow">→</span>
-      </a>
-    </div>
-
-    <div class="terminal" id="terminal">
-      <div class="terminal-dots">
-        <div class="dot red"></div>
-        <div class="dot yellow"></div>
-        <div class="dot green"></div>
-      </div>
-      <div class="code" id="code-content"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2026 withtk. Built with passion.</p>
-  </footer>
-
-  <script>
-    const codeContainer = document.getElementById('code-content');
-    const codeSnippet = [
-      { text: '// withtk.bio', type: 'comment' },
-      { text: '\nconst ', type: 'keyword' },
-      { text: 'developer', type: 'func' },
-      { text: ' = {', type: 'plain' },
-      { text: '\n  name: ', type: 'plain' },
-      { text: "'withtk'", type: 'string' },
-      { text: ',', type: 'plain' },
-      { text: '\n  status: ', type: 'plain' },
-      { text: "'Focusing on UX'", type: 'string' },
-      { text: ',', type: 'plain' },
-      { text: '\n  loves: ', type: 'plain' },
-      { text: "['Minimalism', 'Code']", type: 'string' },
-      { text: '\n};', type: 'plain' },
-      { text: '\n// Keep exploring...', type: 'comment' }
-    ];
-
-    let currentLine = 0;
-    let currentChar = 0;
-
-    function typeCode() {
-      if (currentLine < codeSnippet.length) {
-        const item = codeSnippet[currentLine];
-        const span = document.createElement('span');
-        span.className = item.type;
-        codeContainer.appendChild(span);
-
-        function typeChar() {
-          if (currentChar < item.text.length) {
-            span.textContent += item.text[currentChar];
-            currentChar++;
-            setTimeout(typeChar, 30);
-          } else {
-            currentChar = 0;
-            currentLine++;
-            setTimeout(typeCode, 100);
-          }
-        }
-        typeChar();
-      } else {
-        const cursor = document.createElement('span');
-        cursor.className = 'cursor';
-        codeContainer.appendChild(cursor);
-      }
-    }
-
-    setTimeout(typeCode, 1000);
-
-    // Link animations...
-    const linksItems = document.querySelectorAll('.link-item');
-    linksItems.forEach((link, index) => {
-      link.style.opacity = '0';
-      link.style.transform = 'translateY(10px)';
-      link.style.transition = 'all 0.5s ease-out';
-      
-      setTimeout(() => {
-        link.style.opacity = '1';
-        link.style.transform = 'translateY(0)';
-      }, 400 + (index * 100));
-    });
-
-  </script>
 </body>
 </html>
